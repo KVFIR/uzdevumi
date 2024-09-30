@@ -1,6 +1,5 @@
 import { FormEvent, useEffect, useState } from "react";
 //interfaces
-import { DocumentReference } from "firebase/firestore";
 import { Goal } from "../../../interfaces";
 //hooks
 import { useNavigate } from "react-router-dom";
@@ -10,7 +9,7 @@ import styles from './NewGoal.module.scss'
 //components
 import { AddStep } from "../AddStep/AddStep";
 import { GoalSteps } from "../GoalSteps/GoalSteps";
-import { Layout } from "../../../components/layout/Layout/Layout";
+import { Layout } from "../../../components/Layout/Layout/Layout";
 import { useNewGoalContext } from "../../../hooks/useNewGoalContext";
 
 export const NewGoal = () => {
@@ -19,7 +18,6 @@ export const NewGoal = () => {
     const { addDocument: addGoalStep } = useDb('goalSteps')
     const newGoalCtx = useNewGoalContext()
     const [title, setTitle] = useState('New Goal')
-    const [goalRef, setGoalRef] = useState<DocumentReference<any> | null>(null)
     const [description, setDescription] = useState('')
 
     const handleSubmit = (e: FormEvent) => {
@@ -28,17 +26,15 @@ export const NewGoal = () => {
             title: title,
             description: description
         }
-        addGoal(newGoal).then(ref => ref && setGoalRef(ref))
-    }
-
-    useEffect(() => {
-        if (!goalRef) return
-        newGoalCtx?.steps.forEach(step => {
-            delete step.id
-            addGoalStep({ ...step, goalID: goalRef.id })
+        addGoal(newGoal).then(ref => {
+            if (ref && newGoalCtx?.steps) {
+                newGoalCtx.steps.forEach(step => {
+                    addGoalStep({ ...step, goalID: ref.id })
+                })
+                navigate('/goals')
+            }
         })
-        navigate(-1)
-    }, [goalRef])
+    }
 
     return (
         <Layout title={'Goals'}>
