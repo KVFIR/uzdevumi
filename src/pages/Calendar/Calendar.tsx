@@ -1,7 +1,7 @@
 import { Outlet, useParams, useOutletContext } from 'react-router-dom'
 import dayjs, { Dayjs } from 'dayjs'
 //components
-import { Layout } from '../../components/layout/Layout/Layout'
+import { Layout } from '../../components/Layout/Layout/Layout'
 import { CalendarNavbar } from './CalendarNavbar'
 
 

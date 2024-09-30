@@ -30,3 +30,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added @testing-library/dom to resolve peer dependency warning
 - Updated @babel/plugin-syntax-flow and @babel/plugin-transform-react-jsx
 - Added @babel/core to resolve multiple peer dependency warnings
+
+## [1.0.4] - 2023-10-01
+
+### Fixed
+- Resolved issues in NewGoal component
+- Removed unused variables and imports
+- Refactored handleSubmit function for better goal creation flow

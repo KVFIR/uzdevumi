@@ -5,7 +5,7 @@ import styles from './List.module.scss'
 import { Status } from '../../interfaces'
 //components
 import { AnimatedPopover } from "../../components/AnimatedPopover/AnimatedPopover";
-import { Layout } from "../../components/layout/Layout/Layout";
+import { Layout } from "../../components/Layout/Layout/Layout";
 import { AddStatusForm } from "../../components/forms/AddStatusForm/AddStatusForm";
 import { TaskTable } from './TaskTable'
 import { NoSpaces } from '../../components/NoSpaces/NoSpaces';

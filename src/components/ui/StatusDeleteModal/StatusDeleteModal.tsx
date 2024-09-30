@@ -8,7 +8,7 @@ import { useDb } from "../../../hooks/useDb";
 //styles
 import styles from './StatusDeleteModal.module.scss'
 //components
-import { DeleteModal } from "../../modals/DeleteModal/DeleteModal";
+import { DeleteModal } from "../../Modals/DeleteModal/DeleteModal";
 
 interface StatusDeleteModalProps {
     status: Status

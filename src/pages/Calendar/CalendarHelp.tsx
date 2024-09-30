@@ -9,7 +9,7 @@ import CALENDAR_DAYLINKS from '../../assets/helpModalAssets/CALENDAR-DAYLINKS.we
 import CALENDAR_LINKS from '../../assets/helpModalAssets/CALENDAR-LINKS.webp'
 import CALENDAR_TASKLINK from '../../assets/helpModalAssets/CALENDAR-TASKLINK.webp'
 //components
-import { HelpModal } from '../../components/modals/HelpModal/HelpModal'
+import { HelpModal } from '../../components/Modals/HelpModal/HelpModal'
 
 const calendarHelpContent = [
     {

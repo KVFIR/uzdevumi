@@ -8,7 +8,7 @@ import { useDb } from "../../../hooks/useDb";
 //styles
 import styles from './GoalDeleteModal.module.scss'
 //components
-import { DeleteModal } from "../../../components/modals/DeleteModal/DeleteModal";
+import { DeleteModal } from "../../../components/Modals/DeleteModal/DeleteModal";
 
 interface GoalDeleteModalProps {
     goal: Goal

@@ -7,7 +7,7 @@ import GOALS_NUMBERSTEP from '../../assets/helpModalAssets/GOALS-NUMBERSTEP.webp
 import GOALS_REMOVEGOAL from '../../assets/helpModalAssets/GOALS-REMOVEGOAL.webp'
 import GOALS_STEPTYPES from '../../assets/helpModalAssets/GOALS-STEPTYPES.webp'
 //components
-import { HelpModal } from '../../components/modals/HelpModal/HelpModal'
+import { HelpModal } from '../../components/Modals/HelpModal/HelpModal'
 
 const goalHelpContent = [
     {

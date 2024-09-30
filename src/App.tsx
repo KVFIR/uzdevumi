@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { UserContext } from './contexts/UserContext';
 import { DataContextProvider } from './contexts/DataContext'
 
-import { ErrorPrompt } from './components/modals/ErrorPrompt/ErrorPrompt';
+import { ErrorPrompt } from './components/Modals/ErrorPrompt/ErrorPrompt';
 //pages
 import { Dashboard } from './pages/Dashboard/Dashboard';
 import { List } from './pages/List/List';

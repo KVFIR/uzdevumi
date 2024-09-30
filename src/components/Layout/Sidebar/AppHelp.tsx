@@ -10,7 +10,7 @@ import APP_LOGO from '../../../assets/helpModalAssets/APP-LOGO.webp'
 //styles
 import styles from './Sidebar.module.scss'
 //components
-import { HelpModal } from "../../modals/HelpModal/HelpModal";
+import { HelpModal } from "../../Modals/HelpModal/HelpModal";
 
 const appHelpContent = [
     {

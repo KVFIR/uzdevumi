@@ -5,7 +5,7 @@ import DASHBOARD_HIGHPRIOTASKS from '../../assets/helpModalAssets/DASHBOARD-HIGH
 import DASHBOARD_REMOVESPACES from '../../assets/helpModalAssets/DASHBOARD-REMOVESPACES.webp'
 import DASHBOARD_TODAYSTASKS from '../../assets/helpModalAssets/DASHBOARD-TODAYSTASKS.webp'
 //components
-import { HelpModal } from "../../components/modals/HelpModal/HelpModal";
+import { HelpModal } from "../../components/Modals/HelpModal/HelpModal";
 
 const dashboardHelpContent = [
     {
