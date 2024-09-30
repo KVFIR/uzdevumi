@@ -5,7 +5,7 @@ import styles from './Board.module.scss'
 //components
 import { AddStatusForm } from '../../components/forms/AddStatusForm/AddStatusForm';
 import { AnimatedPopover } from '../../components/AnimatedPopover/AnimatedPopover';
-import { Layout } from '../../components/layout/Layout/Layout';
+import { Layout } from '../../components/Layout/Layout/Layout';
 import { StatusSection } from './StatusSection';
 import { NoSpaces } from '../../components/NoSpaces/NoSpaces';
 import { SpaceSelect } from '../../components/ui/SpaceSelect/SpaceSelect';

@@ -10,7 +10,7 @@ import styles from './NewGoal.module.scss'
 //components
 import { AddStep } from "../AddStep/AddStep";
 import { GoalSteps } from "../GoalSteps/GoalSteps";
-import { Layout } from "../../../components/layout/Layout/Layout";
+import { Layout } from "../../../components/Layout/Layout/Layout";
 import { useNewGoalContext } from "../../../hooks/useNewGoalContext";
 
 export const NewGoal = () => {

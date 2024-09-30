@@ -10,7 +10,7 @@ import PANEL_TASKLINK from '../../assets/helpModalAssets/PANEL-TASKLINK.webp'
 import PANEL_TASKPRIO from '../../assets/helpModalAssets/PANEL-TASKPRIO.webp'
 import PANEL_TASKSTATUS from '../../assets/helpModalAssets/PANEL-TASKSTATUS.webp'
 //components
-import { HelpModal } from '../../components/modals/HelpModal/HelpModal'
+import { HelpModal } from '../../components/Modals/HelpModal/HelpModal'
 
 const Board = [
     {

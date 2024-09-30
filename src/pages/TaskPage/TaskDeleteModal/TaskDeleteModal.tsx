@@ -8,7 +8,7 @@ import { Task } from "../../../interfaces";
 //styles
 import styles from './TaskDeleteModal.module.scss'
 //components
-import { DeleteModal } from "../../../components/modals/DeleteModal/DeleteModal";
+import { DeleteModal } from "../../../components/Modals/DeleteModal/DeleteModal";
 
 interface TaskDeleteModalProps {
     task: Task

@@ -21,7 +21,7 @@ export const SpaceSelect = ({ space, setSpace, className, ...props }: SpaceSelec
     const { spaces } = useDataContext()
 
     return (
-        <Listbox as='div' className={`${styles.spaceSelect} ${className}`} {...props} value={space} onChange={setSpace} >
+        <Listbox as='div' className={`${styles.spaceSelect} ${className}`} value={space} onChange={setSpace} >
             {space && <>
                 <Listbox.Button
                     className={styles.selectButton}

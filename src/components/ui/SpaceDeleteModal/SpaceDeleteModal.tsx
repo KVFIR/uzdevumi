@@ -8,7 +8,7 @@ import { useState } from 'react'
 import { useDataContext } from "../../../hooks/useDataContext";
 import { useDb } from "../../../hooks/useDb";
 //components
-import { DeleteModal } from "../../modals/DeleteModal/DeleteModal";
+import { DeleteModal } from "../../Modals/DeleteModal/DeleteModal";
 
 interface SpaceDeleteModalProps {
     space: Space

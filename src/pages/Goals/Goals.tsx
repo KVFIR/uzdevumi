@@ -6,7 +6,7 @@ import styles from './Goals.module.scss'
 import { Link } from 'react-router-dom';
 import { GoalsHelp } from './GoalsHelp';
 import { GoalLink } from '../../components/ui/GoalLink/GoalLink';
-import { Layout } from '../../components/layout/Layout/Layout'
+import { Layout } from '../../components/Layout/Layout/Layout'
 
 export const Goals = () => {
     const { goals } = useDataContext()

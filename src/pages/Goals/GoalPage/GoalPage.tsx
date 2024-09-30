@@ -11,7 +11,7 @@ import { GoalDeleteModal } from "../GoalDeleteModal/GoalDeleteModal";
 import { GoalsHelp } from "../GoalsHelp";
 import { AddStep } from "../AddStep/AddStep";
 import { GoalSteps } from "../GoalSteps/GoalSteps";
-import { Layout } from "../../../components/layout/Layout/Layout";
+import { Layout } from "../../../components/Layout/Layout/Layout";
 
 export const GoalPage = () => {
     const { goalID } = useParams()
