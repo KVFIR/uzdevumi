@@ -1,5 +1,7 @@
 # Task Manager
 
+Current version: 1.0.0
+
 Task Manager is a fairly customizable work management app that uses some popular task tracking solutions. The app includes a calendar, to-do list, semi-kanban board, and goal progress tracking.
 
 ## Table of contents:
@@ -24,6 +26,7 @@ Task Manager is a fairly customizable work management app that uses some popular
 - Headless UI
 - Dayjs
 - Netlify
+- Yarn
 
 ## Live:
 
@@ -81,3 +84,11 @@ You can enter any, even non-existent, email. I strongly recommend creating your 
 
 icons: [material icons](https://fonts.google.com/icons) <br />
 Background graphic in home page: [stock image](https://pixabay.com/vectors/background-abstract-colorful-wave-6360865/)
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/KVFIR/uzdevumi/tags).
+
+## Changelog
+
+For a detailed list of changes for each version, please see our [CHANGELOG.md](CHANGELOG.md).
