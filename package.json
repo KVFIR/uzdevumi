@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@babel/core": "^7.25.2",
+    "@babel/plugin-syntax-flow": "^7.24.7",
+    "@babel/plugin-transform-react-jsx": "^7.25.2",
     "@headlessui/react": "^1.6.4",
+    "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
@@ -12,11 +16,14 @@
     "@types/react": "^18.0.11",
     "@types/react-dom": "^18.0.5",
     "dayjs": "^1.11.3",
-    "firebase": "^9.8.3",
+    "firebase": "^10.14.0",
+    "nth-check": "^2.1.1",
+    "postcss": "^8.4.47",
+    "postcss-resolve-url": "^0.0.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-router-dom": "^6.3.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "sass": "^1.54.0",
     "typescript": "^4.7.3",
     "web-vitals": "^2.1.4"
@@ -44,5 +51,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+  },
+  "resolutions": {
+    "@grpc/grpc-js": "^1.8.22",
+    "postcss": "^8.4.31",
+    "nth-check": "^2.0.1"
   }
 }
