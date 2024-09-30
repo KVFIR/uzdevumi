@@ -1,0 +1,48 @@
+@use '../calendarPlaceholders';
+@import '../../../scss/variables';
+
+.tableContainer {
+  @extend %tableContainer;
+
+  table {
+    border-spacing: 0 2px;
+
+    .smallCell {
+      box-sizing: border-box;
+      position: absolute;
+      z-index: 1000;
+      width: 3rem;
+      height: 35px;
+      border-bottom: 2px solid $bright-3;
+      padding: 0.4rem 0.2rem;
+    }
+  }
+
+  .grid {
+    display: grid;
+    position: absolute;
+    top: 2px;
+    grid-template-rows: repeat(24, 2rem);
+    grid-template-columns: 3rem auto;
+    row-gap: 2px;
+    column-gap: 0.25rem;
+    overflow-x: auto;
+    width: 100%;
+
+    .gridIndent {
+      grid-column: 1;
+      grid-row-start: 1;
+      grid-row-end: 25;
+    }
+  }
+
+  .taskCard {
+    @extend %taskCard;
+
+    .timeSpan {
+      font-size: 0.8rem;
+      font-weight: 500;
+      word-break: keep-all;
+    }
+  }
+}

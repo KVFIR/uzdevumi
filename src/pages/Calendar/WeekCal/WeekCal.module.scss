@@ -1,0 +1,81 @@
+@use '../../../scss/placeholders';
+@use '../calendarPlaceholders';
+@import '../../../scss/variables';
+
+.subHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.calendarWrapper {
+  overflow-x: auto;
+}
+
+.tableHeaders {
+  display: flex;
+  box-sizing: border-box;
+  column-gap: 2px;
+  padding: 0 2px;
+  min-width: 55rem;
+  width: 100%;
+
+  span {
+    min-width: 3rem;
+  }
+
+  a {
+    @extend %link;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 0.5rem 0;
+    border-radius: 0.5rem 0.5rem 0 0;
+    width: calc((100% - 51px) / 7);
+    font-weight: 600;
+    word-break: break-word;
+    background-color: $bright-1;
+  }
+}
+
+.tableContainer {
+  @extend %tableContainer;
+  min-width: 55rem;
+
+  table {
+    border-spacing: 2px 0;
+
+    .smallCell {
+      width: 3rem;
+    }
+  }
+
+  .grid {
+    display: grid;
+    position: absolute;
+    overflow-x: auto;
+    top: 0;
+    grid-template-rows: 1fr;
+    grid-template-columns: 3rem repeat(7, 1fr);
+    column-gap: 2px;
+    overflow-y: hidden;
+    height: 100%;
+    width: 100%;
+
+    .weekDayGrid {
+      display: grid;
+      height: 100%;
+      grid-template-rows: repeat(24, 2rem);
+      column-gap: 2px;
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+
+    .gridEmptyColumn {
+      grid-column: 1;
+    }
+  }
+
+  .taskCard {
+    @extend %taskCard;
+  }
+}

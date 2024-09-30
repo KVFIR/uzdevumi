@@ -1,0 +1,55 @@
+@use '../../scss/placeholders';
+@import '../../scss/variables';
+
+.taskForm {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 1rem;
+
+  textarea {
+    box-sizing: border-box;
+    padding: 1rem;
+    width: 100%;
+    min-height: 5rem;
+    resize: vertical;
+    border: 0;
+    font-family: inherit;
+    font-size: 1.2rem;
+    border-radius: 0.5rem;
+  }
+
+  .buttonRow {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;
+
+    .returnButton {
+      @extend %baseButton;
+      @extend %darkeningBorder;
+      background-color: $bright-1;
+    }
+
+    .submitButton {
+      @extend %baseButton;
+      @extend %lightingHover;
+      background-color: $blue-1;
+      color: $bright-1;
+      margin-left: auto;
+    }
+  }
+
+  .dateInputsContainer input {
+    background-color: $bright-1;
+  }
+
+  .spaceSelect {
+    font-weight: 400;
+    border-width: 3px;
+  }
+}
+
+.row {
+  display: flex;
+  gap: 2rem;
+}

@@ -1,0 +1,31 @@
+@use '../../../scss/placeholders';
+@import '../../../scss/variables';
+
+.dialog {
+  position: relative;
+  z-index: 10000;
+  .panel {
+    box-sizing: border-box;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $bright-1;
+    border: $red-1 solid 0.25rem;
+    padding: 0.25rem;
+    border-radius: 0.5rem;
+    bottom: 0.5rem;
+    right: 1rem;
+    left: 1rem;
+
+    p {
+      margin: 0;
+    }
+
+    button {
+      @extend %baseButton;
+      @extend %darkeningHover;
+      background-color: $bright-4;
+    }
+  }
+}

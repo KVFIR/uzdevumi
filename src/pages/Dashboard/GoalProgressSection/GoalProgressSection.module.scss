@@ -1,0 +1,27 @@
+@use '../../../scss/placeholders';
+@use '../dashboardPlaceholders';
+@import '../../../scss/mixins';
+@import '../../../scss/variables';
+
+.goalProgressSection {
+  @include mdScreen {
+    grid-column: 1;
+  }
+
+  .goalLinks {
+    @extend %nonTableSectionContent;
+    position: relative;
+    align-items: center;
+    padding: 0 0.5rem;
+    overflow-x: auto;
+  }
+
+  .goalProgressCaption {
+    @extend %nonTableSectionCaption;
+    background-color: $yellow-1;
+  }
+
+  .noTasks {
+    @extend %noTasks;
+  }
+}

@@ -1,0 +1,59 @@
+@use '../../../scss/placeholders';
+@import '../../../scss/variables';
+@import '../../../scss//mixins';
+
+.subHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  font-weight: 500;
+  background-color: inherit;
+
+  @include smScreen {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .goalTitle {
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 2.2rem;
+    margin: 0;
+  }
+
+  .goalProgress {
+    font-size: $font-large;
+    color: $green-1;
+    font-weight: 600;
+    margin: 0 1rem 0 0.5rem;
+  }
+
+  span {
+    background-color: inherit;
+  }
+}
+
+.deleteButton {
+  @extend %baseButton;
+  @extend %darkeningHover;
+  align-self: flex-start;
+  background-color: $red-1;
+  margin-top: auto;
+}
+
+.openAddStepsBtn {
+  @extend %baseButton;
+  @extend %darkeningHover;
+  margin: 1rem 0;
+  background-color: $bright-1;
+}
+
+.description {
+  font-size: 1rem;
+  font-style: italic;
+  text-align: center;
+  word-break: break-word;
+  margin: 1rem 0;
+}

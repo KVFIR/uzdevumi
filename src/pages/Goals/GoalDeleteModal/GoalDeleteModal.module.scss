@@ -1,0 +1,10 @@
+@use '../../../scss/placeholders';
+@import '../../../scss/variables';
+
+.openModalButton {
+  @extend %baseButton;
+  @extend %darkeningBorder;
+  background-color: $red-1;
+  margin-top: auto;
+  width: fit-content;
+}

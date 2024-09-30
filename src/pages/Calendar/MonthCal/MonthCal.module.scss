@@ -1,0 +1,54 @@
+@use '../../../scss/placeholders';
+@import '../../../scss/variables';
+
+.calendarWrapper {
+  overflow-x: auto;
+}
+
+.week {
+  display: flex;
+  margin-bottom: 4px;
+  gap: 4px;
+  width: 100%;
+  min-width: 45rem;
+
+  .weekDayHeader {
+    box-sizing: border-box;
+    flex-basis: 14%;
+    padding: 0.5rem 0;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    word-break: break-word;
+    background-color: $bright-1;
+  }
+
+  .day {
+    @extend %link;
+    box-sizing: border-box;
+    min-height: 7rem;
+    flex-basis: calc((100% - 28px) / 7);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: $bright-1;
+  }
+}
+
+.taskBadgeContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.taskBadge {
+  @extend %darkeningHover;
+  box-sizing: border-box;
+  width: 2rem;
+  height: 1rem;
+  border-radius: 0.3rem;
+  filter: brightness(95%);
+  cursor: pointer;
+  transition: all 150ms ease-out;
+}

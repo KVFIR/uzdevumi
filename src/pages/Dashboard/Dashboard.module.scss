@@ -1,0 +1,44 @@
+@use '../../scss//placeholders';
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
+%sectionChild {
+  height: calc(100% - 37px);
+  border-radius: 0 0 0.5rem 0.5rem;
+  @include smScreen {
+    border-radius: 0 0.5rem 0.5rem 0.5rem;
+  }
+}
+
+.subheader {
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  font-size: 1.5rem;
+  font-family: 'Montserrat';
+  background-color: inherit;
+  margin: 2rem 0;
+  justify-content: space-between;
+
+  @include smScreen {
+    font-size: 2rem;
+  }
+
+  span {
+    margin-right: 1rem;
+  }
+}
+
+.gridContainer {
+  display: grid;
+  align-content: stretch;
+  grid-template-columns: minmax(0, 1fr);
+  flex-grow: 1;
+  gap: 1rem;
+
+  @include mdScreen {
+    align-content: flex-start;
+    grid-template-columns: minmax(0, 1fr) 1fr;
+    grid-template-rows: auto auto 1fr;
+  }
+}

@@ -1,0 +1,45 @@
+@use '../../scss/placeholders';
+@import '../../scss/mixins';
+
+%nonTableSectionCaption {
+  @extend %baseTableCaption;
+  display: block;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 1rem;
+  margin: 0;
+  width: 100%;
+
+  @include smScreen {
+    width: fit-content;
+  }
+}
+
+%nonTableSectionContent {
+  display: flex;
+  gap: 0.5rem;
+  height: calc(100% - 37px);
+  background-color: $bright-1;
+  border-radius: 0 0 0.5rem 0.5rem;
+  @include smScreen {
+    border-radius: 0 0.5rem 0.5rem 0.5rem;
+  }
+}
+
+%tableSection {
+  table {
+    @extend %baseTable;
+    height: calc(100% - 37px);
+    border-radius: 0 0 0.5rem 0.5rem;
+    @include smScreen {
+      border-radius: 0 0.5rem 0.5rem 0.5rem;
+    }
+
+    caption {
+      @extend %baseTableCaption;
+      @include smScreen {
+        width: fit-content;
+      }
+    }
+  }
+}

@@ -1,0 +1,157 @@
+@import './variables';
+
+%icon {
+  box-sizing: border-box;
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  border: rgba(0, 0, 0, 0.25) solid 2px;
+  background-color: inherit;
+  text-align: center;
+  transition: all 150ms ease-out;
+  cursor: pointer;
+}
+%icon:hover {
+  filter: brightness(115%);
+}
+
+%circle {
+  @extend %icon;
+  border-radius: 50%;
+  min-width: 1.3rem;
+  min-height: 1.3rem;
+}
+
+%baseButton {
+  background-color: inherit;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 150ms ease-out;
+}
+
+%subtitle {
+  font-size: $font-bigger;
+  font-weight: 400;
+}
+
+%baseInput {
+  box-sizing: border-box;
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: solid 1px $bright-4;
+  background-color: $bright-3;
+}
+
+%darkeningBorder {
+  border: 3px solid rgba(0, 0, 0, 0);
+}
+%darkeningBorder:hover {
+  border-color: rgba(0, 0, 0, 0.25);
+}
+
+%lightingBorder {
+  border: 3px solid rgba(0, 0, 0, 0);
+}
+%lightingBorder:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+%lightingHover:hover {
+  filter: brightness(130%);
+}
+%darkeningHover:hover {
+  filter: brightness(90%);
+}
+
+%baseTable {
+  width: 100%;
+  border-spacing: 0 2px;
+  background-color: inherit;
+  empty-cells: hide;
+  tbody,
+  tr {
+    background-color: inherit;
+  }
+  td {
+    box-sizing: border-box;
+    padding: 0.4rem;
+    background-color: $bright-1;
+
+    p {
+      word-break: break-word;
+      margin: 0;
+    }
+  }
+  th {
+    box-sizing: border-box;
+    background-color: inherit;
+    color: $dark-1;
+  }
+}
+
+%baseTableCaption {
+  padding: 0.5rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+  font-weight: 600;
+}
+
+%link {
+  color: $font-dark;
+  text-decoration: none;
+  font-size: 1rem;
+  cursor: pointer;
+}
+%link:hover,
+%link:focus {
+  color: $font-blue;
+}
+
+%baseModalContainer {
+  box-sizing: border-box;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 7000;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  padding: 1rem;
+  backdrop-filter: blur(1px) brightness(90%);
+}
+
+%baseModalPanel {
+  padding: 2rem;
+  border-radius: 1rem;
+  text-align: center;
+  background-color: $bright-1;
+}
+
+%baseList {
+  list-style: none;
+  border-top: $bright-4 solid 1px;
+  padding: 0;
+  margin: 0;
+
+  li {
+    font-weight: 400;
+    border: 1px solid $bright-4;
+    padding: 0.5rem;
+    border-radius: 0;
+    border-top: none;
+    background-color: $bright-1;
+  }
+}
+
+%noTasks {
+  font-size: 0.9rem;
+  font-style: italic;
+  cursor: auto;
+}

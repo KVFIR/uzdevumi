@@ -1,0 +1,11 @@
+@use '../../../scss/placeholders';
+@import '../../../scss/variables';
+
+.openDialogButton {
+  @extend %icon;
+  background: url(../../../assets/icons/close.svg);
+  background-size: cover;
+}
+.openDialogButton:hover {
+  background-color: $red-1;
+}

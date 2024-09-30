@@ -1,0 +1,19 @@
+@use '../dashboardPlaceholders';
+@import '../../../scss/mixins';
+@import '../../../scss/variables';
+
+.highPrioSection {
+  @extend %tableSection;
+
+  @include mdScreen {
+    grid-column: 1;
+  }
+
+  .highPrioTasksCaption {
+    background-color: $red-1;
+  }
+
+  .noTasks {
+    @extend %noTasks;
+  }
+}

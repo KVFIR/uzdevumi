@@ -1,0 +1,232 @@
+{
+  "defaultSpaces": [
+    {
+      "name": "My awesome default space! #1"
+    },
+    {
+      "name": "My awesome default space! #2"
+    }
+  ],
+  "defaultTasks": [
+    {
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis iaculis tortor quis eros pretium euismod. In vulputate porta ante, quis cursus ante mattis vel.",
+      "priority": "high",
+      "dueDate": null,
+      "fromDate": null
+    },
+    {
+      "description": "Proin pellentesque mauris nec dui vehicula, vel maximus quam ultricies. Suspendisse ut imperdiet nibh, non sagittis elit. Sed vitae commodo ante.",
+      "priority": "medium",
+      "dueDate": null,
+      "fromDate": null
+    },
+    {
+      "description": "Nulla ut sapien dui. Maecenas congue consequat erat at tempor. Duis dui neque, posuere dignissim arcu suscipit, feugiat eleifend leo. Sed ac ipsum ornare, fermentum nunc sit amet, dapibus ante. Sed vulputate vehicula convallis.",
+      "priority": "low",
+      "dueDate": null,
+      "fromDate": null
+    },
+    {
+      "description": "Maecenas sagittis id ligula nec luctus. Aenean pulvinar nulla ipsum, eu volutpat tellus rhoncus vitae. Vestibulum blandit pulvinar justo sit amet dignissim. Aliquam sed accumsan est.",
+      "priority": "low",
+      "dueDate": null,
+      "fromDate": null
+    },
+    {
+      "description": "Nulla ut sapien dui. Maecenas congue consequat erat at tempor. Duis dui neque, posuere dignissim arcu suscipit, feugiat eleifend leo. Sed ac ipsum ornare, fermentum nunc sit amet, dapibus ante. Sed vulputate vehicula convallis.",
+      "priority": "medium",
+      "dueDate": null,
+      "fromDate": null
+    },
+    {
+      "description": "Nulla ut sapien dui. Maecenas congue consequat erat at tempor. Duis dui neque, posuere dignissim arcu suscipit, feugiat eleifend leo. Sed ac ipsum ornare, fermentum nunc sit amet, dapibus ante. Sed vulputate vehicula convallis.",
+      "priority": "low",
+      "dueDate": null,
+      "fromDate": null
+    },
+    {
+      "description": "Proin sit amet ipsum sit amet nibh varius rhoncus. Vivamus lobortis tellus eu mattis rhoncus. Vivamus mauris orci, porttitor sit amet sagittis nec, consectetur at ipsum. Duis tristique lorem id volutpat bibendum. Vivamus lobortis pellentesque magna vel varius. Cras eleifend id sapien vel malesuada. Nunc lacinia euismod metus, at scelerisque urna faucibus ultricies.",
+      "priority": "low",
+      "dueDate": null,
+      "fromDate": null
+    },
+    {
+      "description": "Nunc ac congue est, eleifend aliquet tellus. Nam sem nisl, tempus eget urna eget, dictum facilisis dui. Nunc non mi mi. Nullam tristique pharetra dolor, et lobortis felis fermentum vel. Mauris molestie bibendum est ac consectetur. Nullam sagittis semper blandit. Proin elementum non dui nec vehicula.",
+      "priority": "medium",
+      "dueDate": null,
+      "fromDate": null
+    },
+    {
+      "description": "Cras ultrices leo eu lacus vehicula, quis molestie nisl egestas.",
+      "priority": "low",
+      "dueDate": null,
+      "fromDate": null
+    },
+    {
+      "description": "Aenean iaculis scelerisque ornare. Donec vitae nunc ac mauris maximus sagittis nec sit amet lorem.",
+      "priority": "medium",
+      "dueDate": null,
+      "fromDate": null
+    },
+    {
+      "description": "Fusce eu risus tristique, pretium urna ut, maximus quam. Sed vitae suscipit orci. Morbi commodo laoreet elit, vel efficitur dui fermentum in.",
+      "priority": "low",
+      "dueDate": null,
+      "fromDate": null
+    },
+    {
+      "description": "In vehicula mattis quam, ut commodo sapien egestas tempus. In eleifend lorem non enim condimentum, vitae viverra justo faucibus.",
+      "priority": "high",
+      "dueDate": null,
+      "fromDate": null
+    },
+    {
+      "description": "Etiam vehicula massa quis libero pretium faucibus. Suspendisse mollis, tortor ut ornare sodales, ipsum lectus aliquet mauris, sed accumsan orci justo sed ex.",
+      "priority": "high",
+      "dueDate": null,
+      "fromDate": null
+    },
+    {
+      "description": "Donec sed tortor elementum, maximus turpis quis, tristique ex. Etiam ut scelerisque dui, in placerat eros. In at consequat lectus. Sed et pretium tortor, quis sollicitudin erat. Curabitur suscipit arcu vel neque malesuada eleifend. Praesent facilisis elit sed elit blandit elementum.",
+      "priority": "low",
+      "dueDate": null,
+      "fromDate": null
+    },
+    {
+      "description": "Curabitur ornare aliquet urna nec imperdiet. Donec gravida metus ac nulla varius dictum.",
+      "priority": "medium",
+      "dueDate": null,
+      "fromDate": null
+    },
+    {
+      "description": "Nunc dignissim viverra ante, sit amet luctus eros gravida ac. Mauris dapibus rhoncus aliquam. Suspendisse potenti.",
+      "priority": "medium",
+      "dueDate": null,
+      "fromDate": null
+    },
+    {
+      "description": "Vestibulum at porttitor sapien. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Vivamus eget nibh tincidunt, vehicula nibh at, venenatis justo. Aliquam facilisis mi eget dolor mattis, et molestie massa ultricies.",
+      "priority": "low",
+      "dueDate": null,
+      "fromDate": null
+    }
+  ],
+  "defaultStatuses": [
+    {
+      "name": "Open",
+      "orderIndex": 0,
+      "color": "#c7d2fe"
+    },
+    {
+      "name": "In Progress",
+      "orderIndex": 1,
+      "color": "#ddd6fe"
+    },
+    {
+      "name": "Review",
+      "orderIndex": 2,
+      "color": "#ffff80"
+    },
+    {
+      "name": "Revision",
+      "orderIndex": 3,
+      "color": "#ff8080"
+    },
+    {
+      "name": "Closed",
+      "orderIndex": 4,
+      "color": "#d9f99d"
+    },
+    {
+      "name": "Frozen",
+      "orderIndex": 5,
+      "color": "#99FDFF"
+    },
+
+    {
+      "name": "Up next",
+      "orderIndex": 0,
+      "color": "#c7d2fe"
+    },
+    {
+      "name": "In Progress",
+      "orderIndex": 1,
+      "color": "#ff80ff"
+    },
+    {
+      "name": "On Hold",
+      "orderIndex": 2,
+      "color": "#99ccff"
+    },
+    {
+      "name": "Done",
+      "orderIndex": 3,
+      "color": "#9fff80"
+    },
+    {
+      "name": "Questions",
+      "orderIndex": 4,
+      "color": "#94b8b8"
+    }
+  ],
+  "defaultGoals": [
+    {
+      "title": "Default goal #1!",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis iaculis tortor quis eros pretium euismod. In vulputate porta ante, quis cursus ante mattis vel."
+    },
+    {
+      "title": "Default goal #2!",
+      "description": "Etiam purus metus, porta sed placerat eget, condimentum quis tortor. Maecenas tempus nibh vitae orci convallis, id suscipit enim tempus."
+    }
+  ],
+  "defaultGoalSteps": [
+    {
+      "value": 12,
+      "target": 45,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac dolor massa. Nulla facilisi. Mauris feugiat, est quis dictum auctor, quam velit finibus lacus, et faucibus dui enim et libero.",
+      "type": "number",
+      "progress": 0.26
+    },
+    {
+      "value": 5,
+      "target": 10,
+      "description": "Suspendisse ut ex non dolor euismod malesuada. Ut in vehicula urna.",
+      "type": "number",
+      "progress": 0.5
+    },
+    {
+      "value": 11,
+      "target": 35,
+      "description": "Proin non arcu luctus, luctus est eu, tincidunt augue. Vestibulum ac tempor mauris.",
+      "type": "number",
+      "progress": 0.314
+    },
+    {
+      "value": 15,
+      "target": 60,
+      "description": "Ut laoreet vitae orci sed bibendum. Morbi iaculis est eu nisi sodales finibus.",
+      "type": "number",
+      "progress": 0.25
+    },
+    {
+      "type": "boolean",
+      "description": "Cras ac lobortis diam. Phasellus rutrum nibh nisi, eu blandit sapien accumsan blandit.",
+      "progress": 1
+    },
+    {
+      "type": "boolean",
+      "description": "Nullam est arcu, efficitur at tellus in, interdum semper augue.",
+      "progress": 0
+    },
+    {
+      "type": "task",
+      "progress": 0,
+      "taskID": ""
+    },
+    {
+      "type": "task",
+      "progress": 1,
+      "taskID": ""
+    }
+  ]
+}

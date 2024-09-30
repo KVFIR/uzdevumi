@@ -1,0 +1,23 @@
+@use '../../../scss/placeholders';
+@import '../../../scss/variables';
+
+.numButton {
+  width: 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: all 150ms ease-out;
+}
+
+.incButton {
+  @extend %darkeningHover;
+  background-color: $bright-4;
+}
+
+.decButton {
+  @extend %lightingHover;
+  background-color: $blue-1;
+  color: $bright-1;
+}

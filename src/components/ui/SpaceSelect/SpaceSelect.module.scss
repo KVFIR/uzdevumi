@@ -1,0 +1,61 @@
+@use '../../../scss/placeholders';
+@import '../../../scss/variables';
+@import '../../../scss/mixins';
+
+.spaceSelect {
+  position: relative;
+  width: 100%;
+  z-index: 3000;
+
+  ul {
+    @extend %baseList;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3000;
+    transform: translate(0, 100%);
+  }
+  ul :last-child {
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+  }
+
+  li {
+    @extend %baseButton;
+    position: relative;
+    z-index: 3000;
+  }
+  .optionActive {
+    background-color: $bright-4;
+  }
+
+  .selectButton {
+    @extend %baseButton;
+    @extend %lightingBorder;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    font-size: inherit;
+    font-weight: inherit;
+    align-items: center;
+    width: 100%;
+    border: rgba(0, 0, 0, 0) 4px solid;
+    color: $bright-1;
+    background-color: $blue-1;
+  }
+}
+
+.transition {
+  transition-property: opacity;
+  transition-duration: 150ms;
+  transition-timing-function: ease-out;
+}
+
+.transitionEnterFrom {
+  opacity: 0%;
+}
+
+.transitionEnterTo {
+  opacity: 100%;
+}

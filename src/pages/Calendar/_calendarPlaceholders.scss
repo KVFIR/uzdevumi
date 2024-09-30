@@ -1,0 +1,46 @@
+@use '../../scss/placeholders';
+@import '../../scss/variables';
+
+%tableContainer {
+  position: relative;
+
+  table {
+    width: 100%;
+    padding: 0;
+    background-color: inherit;
+    empty-cells: show;
+
+    tr {
+      height: 2rem;
+    }
+
+    td {
+      box-sizing: border-box;
+      padding: 0.2rem;
+      background-color: $bright-1;
+    }
+  }
+
+  %taskCard {
+    @extend %darkeningHover;
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+    min-width: 5.2rem;
+    min-height: 1.5rem;
+    filter: brightness(98%);
+    padding: 0.3rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 150ms ease-out;
+
+    p {
+      margin: 0;
+      line-height: 1.1rem;
+      word-break: break-word;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: pre-line;
+    }
+  }
+}

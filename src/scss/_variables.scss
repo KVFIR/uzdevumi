@@ -1,0 +1,34 @@
+$screen-sm: 576px;
+$screen-md: 768px;
+$screen-lg: 860px;
+$screen-xl: 1024px;
+$screen-xxl: 1300px;
+$screen-full: 1400px;
+
+$bright-1: #ffffff;
+$bright-2: #f4f4f5;
+$bright-3: #f3f4f6;
+$bright-4: #e5e7eb;
+
+$brighterTransparent: rgba(255, 255, 255, 0.25);
+$darkerTransparent: rgba(255, 255, 255, 0.801);
+
+$spacing-1: 0.5rem;
+$spacing-2: 1rem;
+$spacing-3: 2rem;
+
+$dark-1: #262626;
+$blue-1: #334155;
+$purple-1: #543355;
+$yellow-1: #ffd700;
+$green-1: #86efac;
+$red-1: #f87171;
+
+$font-dark: black;
+$font-bright: white;
+$font-blue: blue;
+
+$font-normal: 1rem;
+$font-bigger: 1.7rem;
+$font-large: 3.5rem;
+$font-superLarge: 6rem;

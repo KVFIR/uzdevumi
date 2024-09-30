@@ -1,0 +1,151 @@
+@use '../../scss/placeholders';
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
+.row {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 1rem;
+  background-color: inherit;
+
+  .spaceSelect {
+    @extend %subtitle;
+    font-weight: 300;
+    font-size: 1.3rem;
+
+    @include smScreen {
+      font-size: 1.7rem;
+    }
+  }
+}
+
+.container {
+  box-sizing: border-box;
+  display: flex;
+  flex-grow: 1;
+  gap: 0.5rem;
+  padding-bottom: 1rem;
+  overflow-x: auto;
+  background-color: inherit;
+
+  .addStatusButton {
+    @extend %baseButton;
+    @extend %darkeningHover;
+    box-sizing: border-box;
+    min-width: 15rem;
+    background-color: $bright-4;
+  }
+
+  section {
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    background-color: inherit;
+    min-width: 12.5rem;
+    max-width: 15rem;
+    scrollbar-color: rgb(190, 190, 190) $bright-3;
+
+    .sectionHeader {
+      display: flex;
+      justify-content: space-between;
+      min-height: 4.5rem;
+      border-radius: 0.5rem;
+
+      h2 {
+        align-self: center;
+        font-size: 1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        text-align: center;
+      }
+
+      div {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: inherit;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+      }
+
+      button {
+        margin: 0;
+      }
+    }
+
+    .taskContainer {
+      flex-grow: 1;
+      border-radius: 0.5rem;
+      background-color: inherit;
+      overflow-y: auto;
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      top: 4.5rem;
+      scrollbar-color: rgb(190, 190, 190) $bright-3;
+      scrollbar-width: thin;
+
+      .addTaskBtn {
+        @extend %baseButton;
+        @extend %darkeningBorder;
+        font-weight: 400;
+        background-color: $bright-1;
+        width: 100%;
+        margin-top: 0.5rem;
+      }
+
+      .taskCard {
+        @extend %link;
+        box-sizing: border-box;
+        border-radius: 0.5rem;
+        margin-top: 0.5rem;
+        padding: 0.5rem;
+        background-color: $bright-1;
+        word-break: break-word;
+
+        .infoButtonRow {
+          position: relative;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+        }
+
+        p {
+          margin: 0;
+        }
+        hr {
+          border-color: rgba(0, 0, 0, 0.25);
+        }
+
+        .date {
+          font-size: 0.85rem;
+          color: rgba(0, 0, 0, 0.75);
+        }
+      }
+    }
+
+    .taskContainer::-webkit-scrollbar {
+      width: 4px;
+    }
+    .taskContainer::-webkit-scrollbar-thumb {
+      background: rgb(190, 190, 190);
+    }
+    .taskContainer::-webkit-scrollbar-track {
+      background: $bright-3;
+    }
+
+    @include xlScreen {
+      min-width: 15rem;
+    }
+  }
+
+  .sectionHidden {
+    min-width: 2rem;
+    max-height: 4.5rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+  }
+}

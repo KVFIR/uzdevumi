@@ -1,0 +1,64 @@
+@import '../../../scss/variables';
+@import '../../../scss/mixins';
+
+.dateEnabledSwitch {
+  margin-top: 0.5rem;
+
+  .switch {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    height: 1.5rem;
+    width: 3rem;
+    border: none;
+    border-radius: 1rem;
+    background-color: $blue-1;
+    transition: all 150ms ease-out;
+    cursor: pointer;
+
+    .switchInner {
+      box-sizing: border-box;
+      display: block;
+      height: 1.4rem;
+      width: 1.4rem;
+      border: $blue-1 solid 2px;
+      border-radius: 1rem;
+      transition: all 150ms ease-out;
+    }
+
+    .switchInnerEnabled {
+      transform: translate(80%);
+      background-color: #86efac;
+    }
+
+    .switchInnerDisabled {
+      transform: translate(-20%);
+      background-color: #bbbbbb;
+    }
+  }
+}
+
+.dateInputsContainer {
+  margin-top: 0.5rem;
+
+  label {
+    width: 100%;
+
+    input {
+      border: none;
+      width: 100%;
+      box-sizing: border-box;
+      border-radius: 0.5rem;
+      padding: 0.5rem;
+      font-size: 0.9rem;
+      font-family: inherit;
+      text-transform: uppercase;
+      background-color: $bright-3;
+
+      max-width: 10rem;
+      @include smScreen {
+        max-width: none;
+      }
+    }
+  }
+}

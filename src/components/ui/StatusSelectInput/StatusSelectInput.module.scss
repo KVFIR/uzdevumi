@@ -1,0 +1,13 @@
+@use '../../../scss/placeholders';
+
+.statusSelectInput {
+  @extend %baseButton;
+  text-transform: uppercase;
+  font-weight: 600;
+  width: 100%;
+  min-width: 8rem;
+
+  option {
+    font-weight: 500;
+  }
+}

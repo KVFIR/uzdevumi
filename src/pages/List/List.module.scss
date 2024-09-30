@@ -1,0 +1,124 @@
+@use '../../scss/placeholders';
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
+.row {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 1rem;
+  background-color: inherit;
+
+  .spaceSelect {
+    @extend %subtitle;
+    font-weight: 300;
+    font-size: 1.3rem;
+
+    @include smScreen {
+      font-size: 1.7rem;
+    }
+  }
+}
+
+.listContainer {
+  @extend %baseTable;
+  margin-bottom: 0.5rem;
+  padding-left: 1.25rem;
+
+  th {
+    padding: 0.5rem;
+    text-align: left;
+    font-weight: 400;
+    cursor: auto;
+  }
+  tr {
+    .itemDate {
+      margin: 0;
+      font-size: 0.8rem;
+      color: $dark-1;
+    }
+  }
+
+  .thDueDate {
+    padding: 0;
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  caption {
+    display: flex;
+    position: absolute;
+    text-align: left;
+    align-items: flex-end;
+    background-color: inherit;
+    transform: translate(-1.25rem, 14.5px);
+
+    .statusText {
+      @extend %baseTableCaption;
+      margin-left: 0.25rem;
+    }
+
+    .addTaskBtn {
+      @extend %darkeningBorder;
+      box-sizing: border-box;
+      font-weight: 500;
+      height: 2rem;
+      width: 2rem;
+
+      border-radius: 0 0.5rem 0 0;
+      border: 2px solid $bright-4;
+      background-color: $bright-1;
+      cursor: pointer;
+      transition: all 150ms ease-out;
+    }
+
+    .addTaskForm {
+      position: absolute;
+      transform: none;
+    }
+  }
+  caption:focus-within {
+    z-index: 4000;
+  }
+
+  .noTasks {
+    @extend %noTasks;
+    padding-left: 1rem;
+    border-radius: 0 0 1rem 1rem;
+    color: $font-dark;
+  }
+
+  .hiddenTableCell {
+    background-color: $bright-4;
+    border-radius: 0 0 1rem 1rem;
+    empty-cells: show;
+  }
+
+  .smallCell {
+    width: 1rem;
+    text-align: center;
+  }
+
+  .hideStatusBtn {
+    padding: 1rem 0.25rem 0 0;
+  }
+}
+
+.newStatusContainer {
+  margin: 0;
+  margin-bottom: 1rem;
+  width: fit-content;
+  border-radius: 0.5rem;
+  position: relative;
+  z-index: 2000;
+
+  .newStatusButton {
+    @extend %baseButton;
+    @extend %darkeningBorder;
+    position: relative;
+    border: rgba(0, 0, 0, 0) solid 3px;
+    background-color: rgb(255, 255, 255);
+  }
+}

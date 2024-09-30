@@ -1,0 +1,36 @@
+@use '../../../scss/placeholders';
+@import '../../../scss/variables';
+
+.outsideBtn {
+  @extend %icon;
+  margin: auto;
+}
+
+.container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  z-index: 600;
+  transform: translate(-50%, -50%);
+
+  button {
+    @extend %darkeningBorder;
+    box-sizing: border-box;
+    padding: 0.3rem;
+    border: rgba(0, 0, 0, 0) solid 3px;
+    font-family: inherit;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    transition: all 100ms ease-out;
+  }
+}
+.container :first-child {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+.container :last-child {
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}

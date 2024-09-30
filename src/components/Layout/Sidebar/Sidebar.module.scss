@@ -1,0 +1,154 @@
+@use '../../../scss/placeholders';
+@import '../../../scss/variables';
+@import '../../../scss/mixins';
+
+.sideBarOpen {
+  display: flex !important;
+  animation: moveFormRight 0.25s forwards;
+}
+
+.container {
+  box-sizing: border-box;
+  position: fixed;
+  z-index: 5000;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.5rem;
+  min-height: 100vh;
+  height: 100%;
+  padding-top: 3.5rem;
+  color: $bright-1;
+  width: 4.5rem;
+  background-color: $dark-1;
+  animation: moveFormLeft 0.25s forwards;
+
+  @include smScreen {
+    padding: 0.5rem;
+    display: flex;
+    position: fixed;
+    animation: none;
+  }
+
+  @include xlScreen {
+    width: 12rem;
+    padding: 1rem;
+  }
+
+  .logo {
+    display: none;
+    font-size: 2rem;
+    font-family: 'Montserrat';
+    font-weight: 700;
+    user-select: none;
+
+    hr {
+      margin: 0.8rem 0;
+      width: 12rem;
+      translate: -1rem;
+      min-width: 100%;
+      border: none;
+      border-bottom: solid #ffffff40 2px;
+    }
+
+    @include xlScreen {
+      display: inline;
+    }
+  }
+
+  a {
+    @extend %baseButton;
+    padding: 0.45rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    text-decoration: none;
+    color: $bright-1;
+
+    span {
+      display: none;
+    }
+
+    @include xlScreen {
+      justify-content: flex-start;
+      span {
+        display: block;
+      }
+    }
+  }
+  a:hover {
+    background-color: $brighterTransparent;
+  }
+}
+
+.toggleSidebar {
+  @extend %lightingHover;
+  @extend %baseButton;
+  box-sizing: border-box;
+  position: absolute;
+  margin: 0.5rem;
+  padding-bottom: 0.25rem;
+  z-index: 6000;
+  width: 3.5rem;
+  top: 0.5rem;
+  left: 0;
+  @include smScreen {
+    display: none;
+  }
+}
+.toggleSidebar:hover {
+  background-color: $brighterTransparent;
+}
+
+.toggleSidebar.toggled {
+  position: fixed;
+  img {
+    transition: 150ms all ease-out;
+    rotate: 90deg;
+  }
+}
+
+.settings {
+  .logoutButton {
+    @extend %baseButton;
+    @extend %darkeningHover;
+    width: 100%;
+    background-color: $bright-2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    span {
+      display: none;
+      @include xlScreen {
+        display: inline;
+      }
+    }
+  }
+
+  .openHelp {
+    background-color: $bright-1;
+    margin: 0.5rem auto;
+  }
+}
+
+@keyframes moveFormLeft {
+  from {
+    transform: translate(-100%);
+  }
+  to {
+    transform: translate(0);
+  }
+}
+
+@keyframes moveFromRight {
+  from {
+    transform: translate(0);
+  }
+  to {
+    transform: translate(-100%);
+  }
+}

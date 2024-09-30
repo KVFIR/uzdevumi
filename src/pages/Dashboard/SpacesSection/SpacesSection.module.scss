@@ -1,0 +1,55 @@
+@use '../../../scss/placeholders';
+@use '../dashboardPlaceholders';
+@import '../../../scss/mixins';
+@import '../../../scss/variables';
+
+.spacesSection {
+  @include mdScreen {
+    grid-column: 2;
+    grid-row-start: 1;
+    grid-row-end: 4;
+  }
+
+  .spaces {
+    @extend %nonTableSectionContent;
+    flex-direction: column;
+
+    ul {
+      @extend %baseList;
+
+      li {
+        position: relative;
+        .itemDescription {
+          margin-left: 1rem;
+          margin-right: auto;
+          font-size: 0.9rem;
+          font-style: italic;
+        }
+
+        .spaceDeleteBtn {
+          display: inline-block;
+          position: absolute;
+          right: 1rem;
+          top: 1.4rem;
+        }
+      }
+    }
+
+    .showAddSpaceBtn {
+      @extend %baseButton;
+      @extend %darkeningBorder;
+      margin: auto 1rem 1rem 1rem;
+      background-color: $bright-3;
+    }
+  }
+
+  .spacesCaption {
+    @extend %nonTableSectionCaption;
+    background-color: $purple-1;
+    color: $bright-1;
+  }
+
+  .noTasks {
+    @extend %noTasks;
+  }
+}

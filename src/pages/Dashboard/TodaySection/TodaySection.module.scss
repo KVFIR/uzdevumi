@@ -1,0 +1,19 @@
+@use '../dashboardPlaceholders';
+@import '../../../scss/mixins';
+@import '../../../scss/variables';
+
+.todaySection {
+  @extend %tableSection;
+
+  @include mdScreen {
+    grid-column: 1;
+  }
+
+  .todaysTasksCaption {
+    background-color: $green-1;
+  }
+
+  .noTasks {
+    @extend %noTasks;
+  }
+}

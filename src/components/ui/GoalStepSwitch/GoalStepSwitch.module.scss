@@ -1,0 +1,33 @@
+@import '../../../scss/variables';
+
+.goalStepSwitch {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  width: 2.5rem;
+  height: 1.5rem;
+  border-radius: 1rem;
+  background-color: $bright-4;
+  margin: auto;
+  border: none;
+  cursor: pointer;
+
+  span {
+    display: block;
+    border-radius: 50%;
+    height: 1.4rem;
+    width: 1.4rem;
+    background-color: black;
+    transition: all 150ms ease-out;
+  }
+
+  .switchInnerEnabled {
+    transform: translate(45%);
+    background-color: #86efac;
+  }
+
+  .switchInnerDisabled {
+    transform: translate(-20%);
+    background-color: $blue-1;
+  }
+}

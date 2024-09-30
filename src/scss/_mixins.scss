@@ -1,0 +1,37 @@
+@import './variables';
+
+@mixin maxSmScreen {
+  @media (max-width: #{$screen-sm}) {
+    @content;
+  }
+}
+
+@mixin smScreen {
+  @media (min-width: #{$screen-sm}) {
+    @content;
+  }
+}
+
+@mixin mdScreen {
+  @media (min-width: #{$screen-md}) {
+    @content;
+  }
+}
+
+@mixin lgScreen {
+  @media (min-width: #{$screen-lg}) {
+    @content;
+  }
+}
+
+@mixin xlScreen {
+  @media (min-width: #{$screen-xl}) {
+    @content;
+  }
+}
+
+@mixin xxlScreen {
+  @media (min-width: #{$screen-xxl}) {
+    @content;
+  }
+}

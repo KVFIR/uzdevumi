@@ -1,0 +1,31 @@
+@import '../../../scss/variables';
+
+.goalStepNumberInputs {
+  display: flex;
+  align-items: center;
+  border-radius: 0.25rem;
+  background-color: $bright-4;
+  font-weight: 600;
+
+  input {
+    box-sizing: border-box;
+    width: 50%;
+    min-width: 2.1rem;
+    text-align: center;
+    border-radius: 0.25rem;
+    font-size: 0.8rem;
+    font-style: italic;
+    background-color: $bright-4;
+    border: none;
+    display: inline;
+  }
+
+  .valueInput {
+    background-color: $bright-4;
+    color: $dark-1;
+  }
+  .targetInput {
+    background-color: $blue-1;
+    color: $bright-1;
+  }
+}
