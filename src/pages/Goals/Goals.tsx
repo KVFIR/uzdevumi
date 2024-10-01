@@ -14,17 +14,17 @@ export const Goals = () => {
     const { goals } = useDataContext()
 
     return (
-        <Layout title={t('goals')}>
+        <Layout title={t('goals.title')}>
             <GoalsHelp />
             <div className={styles.container}>
-                <h2 className={styles.subtitle}>{t('breakGoalsIntoTargets')}</h2>
+                <h2 className={styles.subtitle}>{t('goals.breakGoalsIntoTargets')}</h2>
                 <section className={styles.goalList}>
                     {goals?.map(goal =>
                         <GoalLink
                             key={goal.id}
                             goal={goal}
                         />)}
-                    <Link to='NewGoal' className={styles.newGoalLink}>{t('createNewGoal')}</Link>
+                    <Link to='NewGoal' className={styles.newGoalLink}>{t('goals.createNewGoal')}</Link>
                 </section>
             </div>
         </Layout>

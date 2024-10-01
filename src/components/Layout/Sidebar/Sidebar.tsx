@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 import { useTranslation } from 'react-i18next';
+import packageJson from '../../../../package.json';
 //hooks
 import { useLogout } from '../../../hooks/useLogout'
 import { useState, useRef, MouseEvent } from 'react';
@@ -42,42 +43,46 @@ export const Sidebar = () => {
         <>
             <button
                 onClick={handleMenuToggleClick}
-                className={`${styles.toggleSidebar} ${toggleSidebar ? styles.toggled : ''}`}>
-                <img src={menu} alt={t('toggleMenu')} />
+                className={`${styles.toggleSidebar} ${toggleSidebar ? styles.toggled : ''}`}
+                aria-label={t('common.toggleMenu')}
+            >
+                <img src={menu} alt={t('common.toggleMenu')} />
             </button>
-            <div className={` ${toggleSidebar && styles.sideBarOpen} ${styles.container}`} ref={sidebarPanelRef}>
+            <div className={`${toggleSidebar ? styles.sideBarOpen : ''} ${styles.container}`} ref={sidebarPanelRef}>
                 <div>
                     <span className={styles.logo}>
-                        {t('taskManager')}
+                        {t('common.taskManager')}
                         <hr />
                     </span>
                     <nav>
                         <Link to='/Dashboard'>
-                            <img src={home} alt={t('dashboard')} />
-                            <span>{t('dashboard')}</span>
+                            <img src={home} alt={t('navigation.dashboard')} />
+                            <span>{t('navigation.dashboard')}</span>
                         </Link>
                         <Link to='/List'>
-                            <img src={checklist} alt={t('list')} />
-                            <span>{t('list')}</span>
+                            <img src={checklist} alt={t('navigation.list')} />
+                            <span>{t('navigation.list')}</span>
                         </Link>
                         <Link to='/Board'>
-                            <img src={width} alt={t('board')} />
-                            <span>{t('board')}</span>
+                            <img src={width} alt={t('navigation.board')} />
+                            <span>{t('navigation.board')}</span>
                         </Link>
                         <Link to={`/Calendar/${dayjs().format('DD-MM-YYYY')}/Day`}>
-                            <img src={calendar} alt={t('calendar')} />
-                            <span>{t('calendar')}</span>
+                            <img src={calendar} alt={t('navigation.calendar')} />
+                            <span>{t('navigation.calendar')}</span>
                         </Link>
                         <Link to='/Goals'>
-                            <img src={monitoring} alt={t('goals')} />
-                            <span>{t('goals')}</span>
+                            <img src={monitoring} alt={t('navigation.goals')} />
+                            <span>{t('navigation.goals')}</span>
                         </Link>
                     </nav>
                 </div>
                 <div className={styles.settings}>
                     <AppHelp />
-                    <button className={styles.logoutButton} onClick={handleLogoutclick}>
-                        <img src={logoutIcon} alt={t('logout')}></img><span>{t('logout')}</span>
+                    <span className={styles.version}> v{packageJson.version}</span>
+                    <button className={styles.logoutButton} onClick={handleLogoutclick} aria-label={t('common.logout')}>
+                        <img src={logoutIcon} alt={t('common.logout')} />
+                        <span>{t('common.logout')}</span>
                     </button>
                 </div>
             </div>

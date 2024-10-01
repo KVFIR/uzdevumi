@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { useTranslation } from 'react-i18next';
 //styles
 import styles from './Dashboard.module.scss'
 //components
@@ -11,11 +12,13 @@ import { DashboardHelp } from './DashboardHelp';
 import { Outlet } from 'react-router-dom';
 
 export const Dashboard = () => {
+    const { t } = useTranslation();
+
     return (
-        <Layout title="Dashboard">
+        <Layout title={t('dashboard.title')}>
             <div className={styles.subheader}>
                 <span>
-                    {dayjs().format('dddd DD/MM/YYYY')}
+                    {dayjs().format('dddd DD.MM.YYYY')}
                 </span>
                 <DashboardHelp />
             </div>

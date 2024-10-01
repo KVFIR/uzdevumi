@@ -1,23 +1,21 @@
-//hooks
+import { useTranslation } from 'react-i18next';
 import { useDataContext } from '../../../hooks/useDataContext';
-//styles
 import styles from './HighPrioTaskSection.module.scss'
-//components
 import { TaskTableItem } from '../../../components/TaskTableItem/TaskTableItem';
 
-
 export const HighPrioTaskSection = () => {
+    const { t } = useTranslation();
     const { tasks } = useDataContext()
     const highPrioTasks = tasks && tasks.filter(task => task.priority === 'high')
 
     return (
         <section className={styles.highPrioSection}>
             <table>
-                <caption className={styles.highPrioTasksCaption}>Current high priority tasks</caption>
+                <caption className={styles.highPrioTasksCaption}>{t('dashboard.currentHighPriorityTasks')}</caption>
                 <tbody>
                     {!highPrioTasks || highPrioTasks.length === 0 ?
                         <tr>
-                            <td className={styles.noTasks}>You don't have any high priority tasks right now</td>
+                            <td className={styles.noTasks}>{t('tasks.noTasks')}</td>
                         </tr>
                         : highPrioTasks.map(task =>
                             <TaskTableItem key={task.id} task={task} />

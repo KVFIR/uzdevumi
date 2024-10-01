@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import { useTranslation } from 'react-i18next';
 //hooks
 import { useDataContext } from "../../../hooks/useDataContext";
 //utils
@@ -10,18 +11,18 @@ import styles from './TodaySection.module.scss'
 import { TaskTableItem } from "../../../components/TaskTableItem/TaskTableItem";
 
 export const TodaySection = () => {
+    const { t } = useTranslation();
     const { tasks } = useDataContext()
     const todaysTasks = tasks && getTasksWithinDay(tasks, getHoursOfDate(dayjs()))
-
 
     return (
         <section className={styles.todaySection}>
             <table>
-                <caption className={styles.todaysTasksCaption}>Today's tasks</caption>
+                <caption className={styles.todaysTasksCaption}>{t('dashboard.todaysTasks')}</caption>
                 <tbody>
                     {!todaysTasks || todaysTasks.length === 0 ?
                         <tr>
-                            <td className={styles.noTasks}>No task has been scheduled for today</td>
+                            <td className={styles.noTasks}>{t('dashboard.noTasksScheduled')}</td>
                         </tr> :
                         todaysTasks?.map(task =>
                             <TaskTableItem key={task.id} task={task} />

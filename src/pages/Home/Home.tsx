@@ -19,15 +19,15 @@ export const Home = () => {
     return (
         <div className={styles.container}>
             <section>
-                <h1>{t('taskManager')}</h1>
+                <h1>{t('common.taskManager')}</h1>
                 {!isSignupOpen && !isLoginOpen && <>
                     <p>
-                        <span className={styles.subtitle}>{t('trackTasks')}</span>
-                        {t('manageTasksDescription')}
-                        {t('keepTrackGoals')}
+                        <span className={styles.subtitle}>{t('home.trackTasks')}</span>
+                        {t('home.manageTasksDescription')}
+                        {t('home.keepTrackGoals')}
                     </p>
-                    <button className={styles.signupBtn} onClick={() => { setIsSignupOpen(true) }}>{t('signUp')}</button>
-                    <button className={styles.loginBtn} onClick={() => { setIsLoginOpen(true) }}>{t('logIn')}</button>
+                    <button className={styles.signupBtn} onClick={() => { setIsSignupOpen(true) }}>{t('common.signUp')}</button>
+                    <button className={styles.loginBtn} onClick={() => { setIsLoginOpen(true) }}>{t('common.logIn')}</button>
                 </>}
                 {isSignupOpen &&
                     <Register handleClosingForms={handleClosingForms} />
@@ -35,7 +35,7 @@ export const Home = () => {
                 {isLoginOpen &&
                     <Login handleClosingForms={handleClosingForms} />
                 }
-                <p>{t('testAccount')} <br /> {t('login')} test@test.com <br /> {t('password')} test12345 </p>
+                <p>{t('common.testAccount')} <br /> {t('common.login')} test@test.com <br /> {t('common.password')} test12345 </p>
             </section >
         </div >
     );

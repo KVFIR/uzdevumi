@@ -13,12 +13,14 @@ import { StatusOrderChangeBtn } from '../../components/ui/StatusOrderChangeBtn/S
 import { StatusDeleteModal } from '../../components/ui/StatusDeleteModal/StatusDeleteModal'
 import { StatusHideBtn } from '../../components/ui/StatusHideBtn/StatusHideBtn'
 import { TaskTableItem } from '../../components/TaskTableItem/TaskTableItem'
+import { useTranslation } from 'react-i18next'
 
 interface TaskTableProps {
     status: Status
 }
 
 export const TaskTable = ({ status }: TaskTableProps) => {
+    const { t } = useTranslation();
 
     const ref = useRef<HTMLTableElement>(null)
     const { tasks } = useDataContext()
@@ -38,7 +40,7 @@ export const TaskTable = ({ status }: TaskTableProps) => {
                 <AnimatedPopover
                     className={styles.addTaskBtn}
                     buttonText='+'
-                    aria-label='Click to open window where you can add new task'
+                    aria-label={t('help.clickToAddNewTask')}
                     type='button'
                 >
                     <AddTaskForm
@@ -51,7 +53,7 @@ export const TaskTable = ({ status }: TaskTableProps) => {
                 <tr>
                     <th colSpan={2} aria-hidden='true' />
                     <th className={`${styles.thDueDate} ${styles.smallCell}`}>
-                        Due:
+                        {t('tasks.dueDate')}:
                     </th>
                     <th className={styles.smallCell}>
                         <StatusOrderChangeBtn
@@ -74,7 +76,7 @@ export const TaskTable = ({ status }: TaskTableProps) => {
                             <td
                                 className={styles.noTasks}
                                 colSpan={5}>
-                                No tasks
+                                {t('tasks.noTasks')}
                             </td>
                         </tr>
                         : statusTasks.map((task: Task) => (
@@ -90,4 +92,3 @@ export const TaskTable = ({ status }: TaskTableProps) => {
         </table >
     );
 }
-

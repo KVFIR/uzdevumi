@@ -1,5 +1,6 @@
 //hooks
 import { useDataContext } from "../../../hooks/useDataContext";
+import { useTranslation } from 'react-i18next';
 //interfaces
 import { Space } from "../../../interfaces";
 import { ComponentPropsWithoutRef } from 'react'
@@ -19,6 +20,7 @@ interface SpaceSelectProps {
 
 export const SpaceSelect = ({ space, setSpace, className, ...props }: SpaceSelectProps & ComponentPropsWithoutRef<'div'>) => {
     const { spaces } = useDataContext()
+    const { t } = useTranslation();
 
     return (
         <Listbox 
@@ -32,10 +34,10 @@ export const SpaceSelect = ({ space, setSpace, className, ...props }: SpaceSelec
             {space && <>
                 <Listbox.Button
                     className={styles.selectButton}
-                    aria-label='Click to open list of available spaces'
+                    aria-label={t('common.openSpacesList')}
                 >
                     {space.name}
-                    <img src={unfold} alt="Two arrows pointing up and down" />
+                    <img src={unfold} alt={t('common.twoArrows')} />
                 </Listbox.Button>
                 <Transition
                     as={Fragment}

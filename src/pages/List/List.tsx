@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useDataContext } from '../../hooks/useDataContext';
 //styles
 import styles from './List.module.scss'
@@ -13,11 +14,12 @@ import { SpaceSelect } from '../../components/ui/SpaceSelect/SpaceSelect';
 import { ListHelp } from './ListHelp';
 
 export const List = () => {
+    const { t } = useTranslation();
     const { statuses, selectedSpace, setSelectedSpace } = useDataContext()
     const spaceStatuses = statuses?.filter(status => status.spaceId === selectedSpace?.id)
 
     return (
-        <Layout title='List'>
+        <Layout title={t('navigation.list')}>
             <div className={styles.row}>
                 <SpaceSelect
                     space={selectedSpace}
@@ -29,7 +31,7 @@ export const List = () => {
             {selectedSpace ?
                 <>
                     <div className={styles.newStatusContainer}>
-                        <AnimatedPopover className={styles.newStatusButton} buttonText="ADD NEW STATUS">
+                        <AnimatedPopover className={styles.newStatusButton} buttonText={t('spaces.addNewStatus')}>
                             <AddStatusForm />
                         </AnimatedPopover>
                     </div>
