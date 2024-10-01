@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 //styles
 import styles from './Home.module.scss'
 //components
@@ -8,6 +9,7 @@ import { Register } from './Register'
 export const Home = () => {
     const [isSignupOpen, setIsSignupOpen] = useState(false)
     const [isLoginOpen, setIsLoginOpen] = useState(false)
+    const { t } = useTranslation();
 
     const handleClosingForms = () => {
         setIsSignupOpen(false)
@@ -17,15 +19,15 @@ export const Home = () => {
     return (
         <div className={styles.container}>
             <section>
-                <h1>Task<br />Manager</h1>
+                <h1>{t('taskManager')}</h1>
                 {!isSignupOpen && !isLoginOpen && <>
                     <p>
-                        <span className={styles.subtitle}>Track your tasks and progress towards your goals.</span>
-                        Manage your tasks in a to-do list, calendar, or semi-kanban board in my highly customizable task management app.
-                        Keep track of your goal progress and make your dreams come true!
+                        <span className={styles.subtitle}>{t('trackTasks')}</span>
+                        {t('manageTasksDescription')}
+                        {t('keepTrackGoals')}
                     </p>
-                    <button className={styles.signupBtn} onClick={() => { setIsSignupOpen(true) }}>Sign Up</button>
-                    <button className={styles.loginBtn} onClick={() => { setIsLoginOpen(true) }}>Log In</button>
+                    <button className={styles.signupBtn} onClick={() => { setIsSignupOpen(true) }}>{t('signUp')}</button>
+                    <button className={styles.loginBtn} onClick={() => { setIsLoginOpen(true) }}>{t('logIn')}</button>
                 </>}
                 {isSignupOpen &&
                     <Register handleClosingForms={handleClosingForms} />
@@ -33,7 +35,7 @@ export const Home = () => {
                 {isLoginOpen &&
                     <Login handleClosingForms={handleClosingForms} />
                 }
-                <p>Test account: <br /> login: test@test.com <br /> password: test12345 </p>
+                <p>{t('testAccount')} <br /> {t('login')} test@test.com <br /> {t('password')} test12345 </p>
             </section >
         </div >
     );

@@ -5,7 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.11] - 2024-10-02
+## [1.1.1] - 2024-10-01
+
+### Added
+- Latvian language support
+- Internationalization setup with react-i18next
+
+### Changed
+- Updated Home component to use translations
+- Moved localization files to public folder
+
+## [1.0.11] - 2024-10-01
 
 ### Changed
 - Updated `module` and `moduleResolution` settings in `tsconfig.json` to use Node16
