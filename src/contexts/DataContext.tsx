@@ -1,4 +1,3 @@
-
 import React, { createContext, useEffect, useState } from "react";
 import { useCollectionSub } from '../hooks/useCollectionSub';
 import { Task, Space, Status, Goal, NumberGoalStep, BooleanGoalStep, TaskGoalStep } from '../interfaces'

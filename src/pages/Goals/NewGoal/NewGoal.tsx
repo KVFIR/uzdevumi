@@ -1,5 +1,6 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 //interfaces
+import { DocumentReference } from "firebase/firestore";
 import { Goal } from "../../../interfaces";
 //hooks
 import { useNavigate } from "react-router-dom";
@@ -18,6 +19,7 @@ export const NewGoal = () => {
     const { addDocument: addGoalStep } = useDb('goalSteps')
     const newGoalCtx = useNewGoalContext()
     const [title, setTitle] = useState('New Goal')
+    const [goalRef, setGoalRef] = useState<DocumentReference<any> | null>(null)
     const [description, setDescription] = useState('')
 
     const handleSubmit = (e: FormEvent) => {
@@ -26,15 +28,17 @@ export const NewGoal = () => {
             title: title,
             description: description
         }
-        addGoal(newGoal).then(ref => {
-            if (ref && newGoalCtx?.steps) {
-                newGoalCtx.steps.forEach(step => {
-                    addGoalStep({ ...step, goalID: ref.id })
-                })
-                navigate('/goals')
-            }
-        })
+        addGoal(newGoal).then(ref => ref && setGoalRef(ref))
     }
+
+    useEffect(() => {
+        if (!goalRef) return
+        newGoalCtx?.steps.forEach(step => {
+            delete step.id
+            addGoalStep({ ...step, goalID: goalRef.id })
+        })
+        navigate(-1)
+    }, [goalRef, newGoalCtx, addGoalStep, navigate]) // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <Layout title={'Goals'}>

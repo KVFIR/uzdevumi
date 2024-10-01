@@ -70,7 +70,7 @@ export const AddTaskForm = ({
             taskID: taskRef.id!,
             goalID: goalID
         })
-    }, [taskRef, addGoalStep, addGoalStepDocument, goalID, newGoalCtx]) // Добавлены зависимости
+    }, [taskRef, addGoalStep, newGoalCtx, addGoalStepDocument, goalID]) // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
