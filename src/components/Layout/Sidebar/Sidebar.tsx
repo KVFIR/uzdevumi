@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { useTranslation } from 'react-i18next';
 //hooks
 import { useLogout } from '../../../hooks/useLogout'
 import { useState, useRef, MouseEvent } from 'react';
@@ -19,6 +20,7 @@ import { Link } from 'react-router-dom';
 import { AppHelp } from './AppHelp';
 
 export const Sidebar = () => {
+    const { t } = useTranslation();
     const { logout } = useLogout()
     const [toggleSidebar, setToggleSidebar] = useState(false)
     const sidebarPanelRef = useRef<HTMLDivElement | null>(null)
@@ -41,41 +43,41 @@ export const Sidebar = () => {
             <button
                 onClick={handleMenuToggleClick}
                 className={`${styles.toggleSidebar} ${toggleSidebar ? styles.toggled : ''}`}>
-                <img src={menu} alt={'toggle menu'} />
+                <img src={menu} alt={t('toggleMenu')} />
             </button>
             <div className={` ${toggleSidebar && styles.sideBarOpen} ${styles.container}`} ref={sidebarPanelRef}>
                 <div>
                     <span className={styles.logo}>
-                        Task<br /> Manager
+                        {t('taskManager')}
                         <hr />
                     </span>
                     <nav>
                         <Link to='/Dashboard'>
-                            <img src={home} alt='Dashboard' />
-                            <span>Dashboard</span>
+                            <img src={home} alt={t('dashboard')} />
+                            <span>{t('dashboard')}</span>
                         </Link>
                         <Link to='/List'>
-                            <img src={checklist} alt='Todo List' />
-                            <span>List</span>
+                            <img src={checklist} alt={t('list')} />
+                            <span>{t('list')}</span>
                         </Link>
                         <Link to='/Board'>
-                            <img src={width} alt='Board' />
-                            <span>Board</span>
+                            <img src={width} alt={t('board')} />
+                            <span>{t('board')}</span>
                         </Link>
                         <Link to={`/Calendar/${dayjs().format('DD-MM-YYYY')}/Day`}>
-                            <img src={calendar} alt='Calendar' />
-                            <span>Calendar</span>
+                            <img src={calendar} alt={t('calendar')} />
+                            <span>{t('calendar')}</span>
                         </Link>
                         <Link to='/Goals'>
-                            <img src={monitoring} alt='Goals' />
-                            <span>Goals</span>
+                            <img src={monitoring} alt={t('goals')} />
+                            <span>{t('goals')}</span>
                         </Link>
                     </nav>
                 </div>
                 <div className={styles.settings}>
                     <AppHelp />
                     <button className={styles.logoutButton} onClick={handleLogoutclick}>
-                        <img src={logoutIcon} alt='Logout'></img><span>LOGOUT</span>
+                        <img src={logoutIcon} alt={t('logout')}></img><span>{t('logout')}</span>
                     </button>
                 </div>
             </div>

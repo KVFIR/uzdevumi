@@ -37,10 +37,11 @@
 
   .logo {
     display: none;
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-family: 'Montserrat';
     font-weight: 700;
     user-select: none;
+    line-height: 1.2; // Добавим line-height для лучшего контроля над расстоянием между строками
 
     hr {
       margin: 0.8rem 0;
@@ -52,7 +53,9 @@
     }
 
     @include xlScreen {
-      display: inline;
+      display: inline-block; // Изменим на inline-block для лучшего контроля
+      width: 100%; // Занимаем всю доступную ширину
+      padding: 0.5rem 0; // Добавим немного отступов сверху и сниз
     }
   }
 

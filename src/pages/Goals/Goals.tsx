@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 //hooks
 import { useDataContext } from '../../hooks/useDataContext';
 //styles
@@ -9,20 +10,21 @@ import { GoalLink } from '../../components/ui/GoalLink/GoalLink';
 import { Layout } from '../../components/Layout/Layout/Layout'
 
 export const Goals = () => {
+    const { t } = useTranslation();
     const { goals } = useDataContext()
 
     return (
-        <Layout title='Goals'>
+        <Layout title={t('goals')}>
             <GoalsHelp />
             <div className={styles.container}>
-                <h2 className={styles.subtitle}>Break your goals into small targets, track their progress and make your dreams come true!</h2>
+                <h2 className={styles.subtitle}>{t('breakGoalsIntoTargets')}</h2>
                 <section className={styles.goalList}>
                     {goals?.map(goal =>
                         <GoalLink
                             key={goal.id}
                             goal={goal}
                         />)}
-                    <Link to='NewGoal' className={styles.newGoalLink}>Create new goal</Link>
+                    <Link to='NewGoal' className={styles.newGoalLink}>{t('createNewGoal')}</Link>
                 </section>
             </div>
         </Layout>

@@ -7,9 +7,9 @@ import { Login } from './Login'
 import { Register } from './Register'
 
 export const Home = () => {
+    const { t } = useTranslation();
     const [isSignupOpen, setIsSignupOpen] = useState(false)
     const [isLoginOpen, setIsLoginOpen] = useState(false)
-    const { t } = useTranslation();
 
     const handleClosingForms = () => {
         setIsSignupOpen(false)

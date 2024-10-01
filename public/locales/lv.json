@@ -1,5 +1,5 @@
 {
-  "taskManager": "Uzdevumu pārvaldnieks",
+  "taskManager": "Uzdevumi",
   "trackTasks": "Sekojiet saviem uzdevumiem un progresam ceļā uz mērķiem.",
   "manageTasksDescription": "Pārvaldiet savus uzdevumus to-do sarakstā, kalendārā vai semi-kanban dēlī manā ļoti pielāgojamajā uzdevumu pārvaldības lietotnē.",
   "keepTrackGoals": "Sekojiet savu mērķu progresam un piepildiet savus sapņus!",
@@ -7,5 +7,20 @@
   "logIn": "Ielogoties",
   "testAccount": "Testa konts:",
   "login": "lietotājvārds:",
-  "password": "parole:"
+  "password": "parole:",
+  "createNewGoal": "Izveidot jaunu mērķi",
+  "goals": "Mērķi",
+  "dashboard": "Panelis",
+  "list": "Saraksts",
+  "board": "Dēlis",
+  "calendar": "Kalendārs",
+  "addNewStatus": "Pievienot jaunu statusu",
+  "noTasks": "Nav uzdevumu",
+  "spaces": "Telpas",
+  "addNewSpace": "Pievienot jaunu telpu",
+  "todaysTasks": "Šodienas uzdevumi",
+  "highPriorityTasks": "Augstas prioritātes uzdevumi",
+  "toggleMenu": "Pārslēgt izvēlni",
+  "logout": "Iziet",
+  "breakGoalsIntoTargets": "Sadaliet savus mērķus mazos uzdevumos, sekojiet to progresam un piepildiet savus sapņus!"
 }
