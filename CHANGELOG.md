@@ -5,23 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.0.9] - 2023-10-03
+## [1.0.9] - 2024-10-01
 
 ### Changed
-- Updated webpack configuration in config-overrides.js
-- Removed resolve-url-loader to address postcss.plugin deprecation warning
-- Added postcss-loader with specific configuration to resolve PostCSS issues
-- Updated sass-loader configuration to use modern Sass API
-- Modified AddTaskForm, DataContext, and NewGoal components
-- Updated package.json with new dependencies and scripts
-- Updated tsconfig.json
+- Updated React and React DOM to the latest version
+- Updated TypeScript to version 5.6.2
+- Updated various dependencies to their latest versions
+- Resolved issues with PostCSS and Sass loaders
+- Updated webpack and related plugins
+
+### Fixed
+- Resolved peer dependency warnings
+- Fixed compatibility issues between different package versions
+
+### Security
+- Updated dependencies to resolve security vulnerabilities
 
 ### Added
-- New config-overrides.js file for custom webpack configuration
-
-### Updated
-- CHANGELOG.md and README.md to reflect current version and changes
-- yarn.lock with new dependency versions
+- New resolutions in package.json to ensure consistent package versions
 
 ## [1.0.8] - 2023-10-01
 
