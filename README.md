@@ -1,6 +1,6 @@
 # Task Manager
 
-Current version: 1.0.9
+Current version: 1.0.11
 
 Task Manager is a fairly customizable work management app that uses some popular task tracking solutions. The app includes a calendar, to-do list, semi-kanban board, and goal progress tracking.
 
@@ -27,6 +27,7 @@ Task Manager is a fairly customizable work management app that uses some popular
 - Dayjs
 - Netlify
 - Yarn
+- Node16 module resolution
 
 ## Live:
 
