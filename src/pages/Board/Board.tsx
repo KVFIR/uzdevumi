@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 //hooks
 import { useDataContext } from '../../hooks/useDataContext';
 //styles
@@ -12,11 +14,12 @@ import { SpaceSelect } from '../../components/ui/SpaceSelect/SpaceSelect';
 import { BoardHelp } from './BoardHelp';
 
 export const Board = () => {
+    const { t } = useTranslation();
     const { statuses, selectedSpace, setSelectedSpace } = useDataContext()
     const spaceStatuses = statuses?.filter(s => s.spaceId === selectedSpace?.id)
 
     return (
-        <Layout title='Board'>
+        <Layout title={t('board.title')}>
             <div className={styles.row}>
                 <SpaceSelect
                     space={selectedSpace}
@@ -35,7 +38,7 @@ export const Board = () => {
                     ))}
                     <AnimatedPopover
                         className={styles.addStatusButton}
-                        buttonText='ADD NEW STATUS'
+                        buttonText={t('board.addNewStatus')}
                         panelStyles={{
                             transform: 'translate(-15.5rem, -0.5rem)',
                             height: '100%'

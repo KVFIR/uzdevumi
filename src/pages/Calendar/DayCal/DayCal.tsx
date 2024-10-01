@@ -20,7 +20,7 @@ export const DayCal = () => {
         <>
             <SubHeader
                 moveBy={'day'}
-                dateHeader={date.format('dddd DD/MM/YY')}
+                dateHeader={date.format('dddd DD.MM')}
             />
             <div className={styles.tableContainer}>
                 <table>

@@ -50,6 +50,7 @@ In this project user is able to:
 - Get quick access to most important elements in Dashboard page
 - Open short presentation with screenshots and description of functionality in each page (help button)
 - Use the application in Latvian language
+- View the current application version in the sidebar
 
 ## Screenshots:
 

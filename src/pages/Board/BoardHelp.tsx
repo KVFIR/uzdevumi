@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 //assets
 import PANEL_ADDSTATUS from '../../assets/helpModalAssets/PANEL-ADDSTATUS.webp'
 import PANEL_ADDTASK from '../../assets/helpModalAssets/PANEL-ADDTASK.webp'
@@ -12,94 +14,93 @@ import PANEL_TASKSTATUS from '../../assets/helpModalAssets/PANEL-TASKSTATUS.webp
 //components
 import { HelpModal } from '../../components/Modals/HelpModal/HelpModal'
 
-const Board = [
-    {
-        title: 'Spaces',
-        description: 'Switch between spaces and group your tasks depending on your needs',
-        img: {
-            src: PANEL_SPACES,
-            alt: 'Space selection button',
-        },
-    },
-    {
-        title: 'Add Task',
-        description: 'Use "+" icon below status tame to add new task',
-        img: {
-            src: PANEL_ADDTASK,
-            alt: 'Button with plus',
-        },
-    },
-    {
-        title: 'Task Status',
-        description: 'Change task status by clicking on the leftmost task icon, or by dragging task to another column',
-        img: {
-            src: PANEL_TASKSTATUS,
-            alt: 'Little square icon indicating task color and process of dragging tasks between columns',
-        },
-    },
-    {
-        title: 'Task Priority',
-        description:
-            'Circular icon indicates task priority. You can toggle the priority between "low" (green) "medium" (yellow) and "high" (red)',
-        img: {
-            src: PANEL_TASKPRIO,
-            alt: 'Circular colorful icon',
-        },
-    },
-    {
-        title: 'Remove Tasks',
-        description: 'Remove tasks by clicking trashcan icon on the right',
-        img: {
-            src: PANEL_REMOVETASK,
-            alt: 'Trashcan icon',
-        },
-    },
-    {
-        title: 'Go to Task Page',
-        description: 'Click on specific task to move to its subpage, where you can edit its content and properties',
-        img: {
-            src: PANEL_TASKLINK,
-            alt: 'Task with the cursor hovering over it',
-        },
-    },
-    {
-        title: 'Add status',
-        description:
-            'Use "Add status" button on the right side of the page to add new statuses',
-        img: {
-            src: PANEL_ADDSTATUS,
-            alt: 'Add status button',
-        },
-    },
-    {
-        title: 'Status order',
-        description: 'Change status order by using arrow icons at top of each column',
-        img: {
-            src: PANEL_STATUSORDER,
-            alt: 'left and right arrow icons',
-        },
-    },
-    {
-        title: 'Hide table',
-        description: 'Hide table by using arrows icon on top left corner of each column',
-        img: {
-            src: PANEL_HIDESTATUS,
-            alt: 'icon of two arrows directed at each other',
-        },
-    },
-    {
-        title: 'Remove status',
-        description:
-            'Remove status by clicking "X" icon on the top right corner of each column. Keep in mind that removing status also removes any associated with it tasks',
-        img: {
-            src: PANEL_REMOVESTATUS,
-            alt: '"X" icon',
-        },
-    },
-]
-
 export const BoardHelp = () => {
+    const { t } = useTranslation();
+
+    const boardHelpContent = [
+        {
+            title: t('help.spaces'),
+            description: t('help.spacesDescription'),
+            img: {
+                src: PANEL_SPACES,
+                alt: t('help.spaceSelectionButton'),
+            },
+        },
+        {
+            title: t('help.addTask'),
+            description: t('help.addTaskDescription'),
+            img: {
+                src: PANEL_ADDTASK,
+                alt: t('help.buttonWithPlus'),
+            },
+        },
+        {
+            title: t('help.taskStatus'),
+            description: t('help.taskStatusDescription'),
+            img: {
+                src: PANEL_TASKSTATUS,
+                alt: t('help.taskStatusIcon'),
+            },
+        },
+        {
+            title: t('help.taskPriority'),
+            description: t('help.taskPriorityDescription'),
+            img: {
+                src: PANEL_TASKPRIO,
+                alt: t('help.circularColorfulIcon'),
+            },
+        },
+        {
+            title: t('help.removeTasks'),
+            description: t('help.removeTasksDescription'),
+            img: {
+                src: PANEL_REMOVETASK,
+                alt: t('help.trashcanIcon'),
+            },
+        },
+        {
+            title: t('help.goToTaskPage'),
+            description: t('help.goToTaskPageDescription'),
+            img: {
+                src: PANEL_TASKLINK,
+                alt: t('help.taskWithCursor'),
+            },
+        },
+        {
+            title: t('help.addStatus'),
+            description: t('help.addStatusDescription'),
+            img: {
+                src: PANEL_ADDSTATUS,
+                alt: t('help.addStatusButton'),
+            },
+        },
+        {
+            title: t('help.statusOrder'),
+            description: t('help.statusOrderDescription'),
+            img: {
+                src: PANEL_STATUSORDER,
+                alt: t('help.upAndDownArrowIcons'),
+            },
+        },
+        {
+            title: t('help.hideTable'),
+            description: t('help.hideTableDescription'),
+            img: {
+                src: PANEL_HIDESTATUS,
+                alt: t('help.twoArrowsIcon'),
+            },
+        },
+        {
+            title: t('help.removeStatus'),
+            description: t('help.removeStatusDescription'),
+            img: {
+                src: PANEL_REMOVESTATUS,
+                alt: t('help.xIcon'),
+            },
+        },
+    ];
+
     return (
-        <HelpModal slidesContent={Board} />
+        <HelpModal slidesContent={boardHelpContent} />
     );
 }

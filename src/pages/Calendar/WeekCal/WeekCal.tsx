@@ -1,4 +1,5 @@
 import { Dayjs } from "dayjs";
+import { useTranslation } from 'react-i18next';
 //styles
 import styles from './WeekCal.module.scss'
 //hooks
@@ -14,6 +15,7 @@ import { SubHeader } from "../Subheader/SubHeader";
 import { Link } from "react-router-dom";
 
 export const WeekCal = () => {
+    const { t } = useTranslation();
     const { date } = useCalendarOutletContext()
     const { tasks } = useDataContext()
     const weekDays: Dayjs[] = getDaysOfWeek(date)
@@ -23,7 +25,7 @@ export const WeekCal = () => {
         <>
             <SubHeader
                 moveBy={'week'}
-                dateHeader={`${weekDays[0].format('DD/MM/YY')} - ${weekDays[6].format('DD/MM/YY')}`}
+                dateHeader={`${weekDays[0].format('DD.MM')} - ${weekDays[6].format('DD.MM')}`}
             />
             <div className={styles.calendarWrapper}>
                 <div className={styles.tableHeaders}>
@@ -32,7 +34,7 @@ export const WeekCal = () => {
                         <Link
                             key={weekDay.date()}
                             to={`../../${weekDay.format('DD-MM-YYYY')}/Day`}>
-                            {weekDay.format('dddd').toUpperCase()}
+                            {weekDay.format('dddd')}
                         </Link>
                     )}
                 </div>

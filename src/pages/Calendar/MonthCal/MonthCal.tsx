@@ -7,6 +7,7 @@ import styles from './MonthCal.module.scss'
 import { useCalendarOutletContext } from "../Calendar";
 import { useDataContext } from "../../../hooks/useDataContext";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 //utils
 import { getTasksWithinMonth } from '../../../utils/getTasksWithinMonth'
 import { getDaysOfMonth } from '../../../utils/getDaysOfMonth'
@@ -16,6 +17,7 @@ import { TaskBadge } from "./TaskBadge";
 import { SubHeader } from "../Subheader/SubHeader";
 
 export const MonthCal = () => {
+    const { t } = useTranslation();
     const navigate = useNavigate()
     const { date } = useCalendarOutletContext()
     const { tasks } = useDataContext()
@@ -24,12 +26,12 @@ export const MonthCal = () => {
     const weeksId = monthDays.map(monthDay => monthDay.week()).filter((value, index, self) => self.indexOf(value) === index)
 
     const handleClick = (monthDay: Dayjs) => {
-        navigate(`../../${monthDay.format('DD-MM-YYYY')}/Day`)
+        navigate(`../../${monthDay.format('DD.MM.YYYY')}/Day`)
     }
 
     const handleKeyDown = (e: KeyboardEvent, monthDay: Dayjs) => {
         if (e.key === 'Space' || e.key === 'Enter') {
-            navigate(`../../${monthDay.format('DD-MM-YYYY')}/Day`)
+            navigate(`../../${monthDay.format('DD.MM.YYYY')}/Day`)
         }
     }
 
@@ -45,7 +47,7 @@ export const MonthCal = () => {
                         <div
                             key={weekDay.date()}
                             className={styles.weekDayHeader}>
-                            {weekDay.format('dddd').toUpperCase()}
+                            {weekDay.format('dddd')}
                         </div>)}
                 </div>
                 {weeksId.map(weekId =>
