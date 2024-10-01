@@ -41,7 +41,7 @@ const UserContextProvider = ({ children }: { children: ReactNode }) => {
     const [state, dispatch] = useReducer(userReducer, initialState)
 
     useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged((user: User | null) => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
             dispatch({ type: 'AUTH_READY', payload: user })
             unsubscribe()
         })

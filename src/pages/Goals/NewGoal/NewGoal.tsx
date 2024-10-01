@@ -38,7 +38,7 @@ export const NewGoal = () => {
             addGoalStep({ ...step, goalID: goalRef.id })
         })
         navigate(-1)
-    }, [goalRef])
+    }, [goalRef, newGoalCtx, addGoalStep, navigate]) // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <Layout title={'Goals'}>

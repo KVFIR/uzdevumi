@@ -70,8 +70,7 @@ export const AddTaskForm = ({
             taskID: taskRef.id!,
             goalID: goalID
         })
-    }, [taskRef]) //If form appeares in AddStep(goalsteps) it also adds task as a goalStep.
-
+    }, [taskRef, addGoalStep, newGoalCtx, addGoalStepDocument, goalID]) // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()

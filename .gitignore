@@ -22,4 +22,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+<<<<<<< HEAD
 src/firebase/config.ts
+=======
+src/firebase/config.ts
+package-lock.json
+>>>>>>> update/sass-dependencies
