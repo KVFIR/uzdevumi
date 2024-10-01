@@ -1,6 +1,6 @@
 {
-  "name": "task-tracker",
-  "version": "1.0.4",
+  "name": "task-manager",
+  "version": "1.0.8",
   "private": true,
   "dependencies": {
     "@babel/core": "^7.25.2",
@@ -23,14 +23,13 @@
     "react-dom": "^18.1.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.1",
-    "sass": "^1.54.0",
     "typescript": "^4.7.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -53,10 +52,14 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "postcss": "^8.4.47"
+    "postcss": "^8.4.31",
+    "postcss-loader": "^4.0.0",
+    "react-app-rewired": "^2.2.1",
+    "sass": "^1.79.4",
+    "sass-loader": "^16.0.2"
   },
   "peerDependencies": {
-    "postcss": "^8.0.0"
+    "postcss": "^8.4.31"
   },
   "resolutions": {
     "@grpc/grpc-js": "^1.8.22",

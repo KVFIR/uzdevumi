@@ -70,8 +70,7 @@ export const AddTaskForm = ({
             taskID: taskRef.id!,
             goalID: goalID
         })
-    }, [taskRef]) //If form appeares in AddStep(goalsteps) it also adds task as a goalStep.
-
+    }, [taskRef, addGoalStep, addGoalStepDocument, goalID, newGoalCtx]) // Добавлены зависимости
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()

@@ -1,6 +1,6 @@
 # Task Manager
 
-Current version: 1.0.4
+Current version: 1.0.8
 
 Task Manager is a fairly customizable work management app that uses some popular task tracking solutions. The app includes a calendar, to-do list, semi-kanban board, and goal progress tracking.
 
@@ -77,8 +77,8 @@ You can enter any, even non-existent, email. I strongly recommend creating your 
 ## Installation
 
 > git clone https://github.com/Karriuz/task-manager.git <br />
-> npm install <br />
-> npm run start
+> yarn install <br />
+> yarn start
 
 ## Assets sources
 
