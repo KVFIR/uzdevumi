@@ -1,6 +1,6 @@
 {
   "name": "task-manager",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "private": true,
   "dependencies": {
     "@babel/core": "^7.25.2",
@@ -28,7 +28,9 @@
     "react-scripts": "^5.0.1",
     "typescript": "^5.6.2",
     "web-vitals": "^4.2.3",
-    "workbox-webpack-plugin": "^7.1.0"
+    "workbox-webpack-plugin": "^7.1.0",
+    "sass": "^1.79.4",
+    "sass-loader": "^16.0.2"
   },
   "scripts": {
     "start": "react-app-rewired start",
