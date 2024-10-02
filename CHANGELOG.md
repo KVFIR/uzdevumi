@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.8] - 2024-10-03
+
+### Changed
+- Updated Sass configuration to silence deprecation warnings about legacy API
+- Updated webpack-dev-server configuration to address deprecated options warnings
+- Modified config-overrides.js to include new Sass and webpack-dev-server settings
+
+### Fixed
+- Resolved warnings related to deprecated JavaScript API in Sass
+- Addressed issues with deprecated onAfterSetupMiddleware and onBeforeSetupMiddleware options in webpack-dev-server
+
 ## [1.1.7] - 2024-10-02
 
 ### Added

@@ -15,6 +15,7 @@ module.exports = function override(config, env) {
             implementation: require('sass'),
             sassOptions: {
               fiber: false,
+              silenceDeprecations: ['legacy-js-api'], // Добавляем эту опцию
             },
             sourceMap: true,
           },
@@ -44,6 +45,19 @@ module.exports = function override(config, env) {
         sourceMap: true,
       },
     });
+  }
+
+  // Обновляем конфигурацию webpack-dev-server
+  if (config.devServer) {
+    config.devServer = {
+      ...config.devServer,
+      setupMiddlewares: (middlewares, devServer) => {
+        if (!devServer) {
+          throw new Error('webpack-dev-server is not defined');
+        }
+        return middlewares;
+      },
+    };
   }
 
   return config;
