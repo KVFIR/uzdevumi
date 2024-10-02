@@ -5,7 +5,7 @@ import styles from './Dashboard.module.scss'
 //components
 import { Layout } from '../../components/Layout/Layout/Layout'
 import { GoalProgressSection } from './GoalProgressSection/GoalProgressSection';
-import { SpacesSection } from './SpacesSection/SpacesSection';
+import { TeamsSection } from './TeamsSection/TeamsSection';
 import { HighPrioTaskSection } from './HighPrioSection/HighPrioTasksSection';
 import { TodaySection } from './TodaySection/TodaySection';
 import { DashboardHelp } from './DashboardHelp';
@@ -26,7 +26,7 @@ export const Dashboard = () => {
                 <TodaySection />
                 <HighPrioTaskSection />
                 <GoalProgressSection />
-                <SpacesSection />
+                <TeamsSection />
             </div>
             <Outlet />
         </Layout>

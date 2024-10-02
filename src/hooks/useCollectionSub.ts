@@ -1,5 +1,5 @@
 //interfaces
-import { Task, Space, Status, GoalStep, Goal } from '../interfaces'
+import { Task, Team, Status, GoalStep, Goal } from '../interfaces'
 //hooks
 import { useState, useEffect } from 'react'
 import { useErrorPromptContext } from './useErrorPromptContext'
@@ -7,7 +7,7 @@ import { useErrorPromptContext } from './useErrorPromptContext'
 import { collection, onSnapshot, query, where } from 'firebase/firestore'
 import { db } from '../firebase/config'
 
-type Data = Task[] | Space[] | Status[] | Goal[] | GoalStep[]
+type Data = Task[] | Team[] | Status[] | Goal[] | GoalStep[]
 
 export const useCollectionSub = (c: string, uid: string) => {
   const [isPending, setIsPending] = useState(false)

@@ -12,7 +12,7 @@ export const useTaskLink = (task: Task, ref: RefObject<HTMLElement>) => {
 
     const handleOnKeyDown = (e: React.KeyboardEvent) => {
         e.stopPropagation()
-        if (document.activeElement === ref.current && (e.code === 'Enter' || e.code === 'Space')) {
+        if (document.activeElement === ref.current && (e.code === 'Enter' || e.code === 'Team')) {
             navigate(`/Dashboard/${task.id}`)
         }
     }

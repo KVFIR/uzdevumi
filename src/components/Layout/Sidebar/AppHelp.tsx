@@ -26,35 +26,35 @@ export const AppHelp = () => {
             },
         },
         {
-            title: t('help.spacesStatusesTasks'),
-            description: t('help.spacesDescription2'),
+            title: t('help.teamsStatusesTasks'),
+            description: t('help.teamsDescription2'),
             img: {
                 src: APP_DIAGRAM_SPACES,
-                alt: t('help.spacesStatusesTasksDiagram'),
+                alt: t('help.teamsStatusesTasksDiagram'),
             },
         },
         {
-            title: t('help.spacesStatusesTasks'),
+            title: t('help.teamsStatusesTasks'),
             description: t('help.statusesDescription'),
             img: {
                 src: APP_DIAGRAM_STATUSES,
-                alt: t('help.spacesStatusesTasksDiagram'),
+                alt: t('help.teamsStatusesTasksDiagram'),
             },
         },
         {
-            title: t('help.spacesStatusesTasks'),
+            title: t('help.teamsStatusesTasks'),
             description: t('help.tasksDescription'),
             img: {
                 src: APP_DIAGRAM_TASKS,
-                alt: t('help.spacesStatusesTasksDiagram'),
+                alt: t('help.teamsStatusesTasksDiagram'),
             },
         },
         {
-            title: t('help.spacesStatusesTasks'),
-            description: t('help.addSpacesStatusesTasks'),
+            title: t('help.teamsStatusesTasks'),
+            description: t('help.addTeamsStatusesTasks'),
             img: {
                 src: APP_DIAGRAM,
-                alt: t('help.spacesStatusesTasksDiagram'),
+                alt: t('help.teamsStatusesTasksDiagram'),
             },
         },
         {

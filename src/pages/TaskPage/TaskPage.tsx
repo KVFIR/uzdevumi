@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import { FormEvent, useEffect, useState } from "react";
 //interfaces
-import { Space, Status, Task } from "../../interfaces";
+import { Team, Status, Task } from "../../interfaces";
 //styles
 import styles from './TaskPage.module.scss'
 //hooks
@@ -11,14 +11,14 @@ import { useDb } from "../../hooks/useDb";
 //components
 import { DateInputs } from "../../components/ui/DateInputs/DateInputs";
 import { PriorityChangeInput } from "../../components/ui/PriorityChangeInput/PriorityChangeInput";
-import { SpaceSelect } from "../../components/ui/SpaceSelect/SpaceSelect";
+import { TeamSelect } from "../../components/ui/TeamSelect/TeamSelect";
 import { StatusSelectInput } from "../../components/ui/StatusSelectInput/StatusSelectInput";
 import { Layout } from "../../components/Layout/Layout/Layout";
 import { TaskDeleteModal } from "./TaskDeleteModal/TaskDeleteModal";
 
 export const TaskPage = () => {
     const navigate = useNavigate()
-    const { tasks, statuses, spaces } = useDataContext()
+    const { tasks, statuses, teams } = useDataContext()
     const { taskID } = useParams()
     const { updateDocument } = useDb('tasks')
     const task = tasks && tasks.find(i => i.id === taskID)
@@ -27,14 +27,14 @@ export const TaskPage = () => {
     const [fromDate, setFromDate] = useState('')
     const [priority, setPriority] = useState('low')
     const [status, setStatus] = useState<Status | null>(null)
-    const [space, setSpace] = useState<Space | null>(null)
+    const [team, setTeam] = useState<Team | null>(null)
     const [description, setDescription] = useState('')
     const [openSwitch, setOpenSwitch] = useState(false)
 
     useEffect(() => {
-        if (!task || !statuses || !spaces) return
+        if (!task || !statuses || !teams) return
         setDescription(task.description)
-        setSpace(spaces.find(space => space.id! === task.spaceId)!)
+        setTeam(teams.find(team => team.id! === task.teamId)!)
         setStatus(statuses.find(status => status.id === task.statusId)!)
         setPriority(task.priority)
         if (task.dueDate && task.fromDate) {
@@ -42,7 +42,7 @@ export const TaskPage = () => {
             setDueDate(dayjs.unix(task.dueDate).format('YYYY-MM-DDThh:mm'))
             setFromDate(dayjs.unix(task.fromDate).format('YYYY-MM-DDThh:mm'))
         }
-    }, [statuses, task, spaces])
+    }, [statuses, task, teams])
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
@@ -52,7 +52,7 @@ export const TaskPage = () => {
         let updatedTask: Task = {
             description: description,
             priority: priority,
-            spaceId: space ? space.id! : '',
+            teamId: team ? team.id! : '',
             statusId: status ? status.id! : '',
             fromDate: openSwitch && (from.isBefore(due) || from.isSame(due)) ? from.unix() : null,
             dueDate: openSwitch && (from.isBefore(due) || from.isSame(due)) ? due.unix() : null,
@@ -76,7 +76,7 @@ export const TaskPage = () => {
                 <div className={styles.row}>
                     <label style={{ flexGrow: 1 }}>
                         Status:<br />
-                        <StatusSelectInput status={status} setStatus={setStatus} space={space} />
+                        <StatusSelectInput status={status} setStatus={setStatus} team={team} />
                     </label>
                     <label>
                         Priority:
@@ -94,8 +94,8 @@ export const TaskPage = () => {
                     />
                 </div>
                 <label>
-                    Space:<br />
-                    <SpaceSelect space={space} setSpace={setSpace} className={styles.spaceSelect} />
+                    Team:<br />
+                    <TeamSelect team={team} setTeam={setTeam} className={styles.teamSelect} />
                 </label>
                 <div className={styles.buttonRow}>
                     <button

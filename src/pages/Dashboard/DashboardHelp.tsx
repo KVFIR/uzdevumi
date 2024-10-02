@@ -13,19 +13,19 @@ export const DashboardHelp = () => {
 
     const dashboardHelpContent = [
         {
-            title: t('help.addNewSpaces'),
-            description: t('help.useButtonToAddNewSpaces'),
+            title: t('help.addNewTeams'),
+            description: t('help.useButtonToAddNewTeams'),
             img: {
                 src: DASHBOARD_ADDSPACES,
-                alt: t('help.addNewSpaces'),
+                alt: t('help.addNewTeams'),
             },
         },
         {
-            title: t('help.removeSpaces'),
-            description: t('help.useIconToRemoveSpace'),
+            title: t('help.removeTeams'),
+            description: t('help.useIconToRemoveTeam'),
             img: {
                 src: DASHBOARD_REMOVESPACES,
-                alt: t('help.removeSpaces'),
+                alt: t('help.removeTeams'),
             },
         },
         {

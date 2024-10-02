@@ -1,5 +1,5 @@
 //interfaces
-import { Space, Status } from "../../../interfaces";
+import { Team, Status } from "../../../interfaces";
 //hooks
 import { useEffect } from 'react'
 import { useDataContext } from "../../../hooks/useDataContext";
@@ -7,44 +7,44 @@ import { useDataContext } from "../../../hooks/useDataContext";
 import styles from './StatusSelectInput.module.scss'
 
 interface StatusSelectInputProps {
-    space: Space | null
+    team: Team | null
     status: Status | null
     setStatus: React.Dispatch<React.SetStateAction<Status | null>>
 }
 
-export const StatusSelectInput = ({ space, status, setStatus }: StatusSelectInputProps) => {
-    const { statuses, selectedSpace } = useDataContext()
-    const spaceStatuses = space ? statuses?.filter(s => s.spaceId === space.id) : statuses?.filter(s => s.spaceId === selectedSpace?.id)
+export const StatusSelectInput = ({ team, status, setStatus }: StatusSelectInputProps) => {
+    const { statuses, selectedTeam } = useDataContext()
+    const teamStatuses = team ? statuses?.filter(s => s.teamId === team.id) : statuses?.filter(s => s.teamId === selectedTeam?.id)
 
     useEffect(() => {
-        if (!spaceStatuses) {
+        if (!teamStatuses) {
             setStatus(null)
             return
-        } // if space have no statuses set status to null 
+        } // if team have no statuses set status to null 
 
-        if (spaceStatuses.find(s => s.id === status?.id) === undefined) {
-            setStatus(spaceStatuses[0])
-        } //if space does not contain status passed by props, set status to first one in selected space
-    }, [spaceStatuses, setStatus, status?.id])
+        if (teamStatuses.find(s => s.id === status?.id) === undefined) {
+            setStatus(teamStatuses[0])
+        } //if team does not contain status passed by props, set status to first one in selected team
+    }, [teamStatuses, setStatus, status?.id])
 
     return (
         <select
-            id='spaceSelect'
+            id='teamSelect'
             className={styles.statusSelectInput}
             value={status?.id}
             required
             onChange={(e) => {
-                setStatus(spaceStatuses?.find(s => s.id === e.target.value)!)
+                setStatus(teamStatuses?.find(s => s.id === e.target.value)!)
             }}
             style={{ backgroundColor: status?.color }}
         >
-            {!spaceStatuses || spaceStatuses.length === 0 ?
+            {!teamStatuses || teamStatuses.length === 0 ?
                 <option
                     value={''}
                     className={styles.selectInput}>
-                    You cannot add task to space without any statuses
+                    You cannot add task to team without any statuses
                 </option>
-                : spaceStatuses?.map((status) => (
+                : teamStatuses?.map((status) => (
                     <option
                         key={status.id}
                         value={status.id}

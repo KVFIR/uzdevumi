@@ -5,12 +5,11 @@ interface Task {
   fromDate: number | null
   dueDate: number | null
   priority: string
-
-  spaceId: string
+  teamId: string
   statusId: string
 }
 
-interface Space {
+interface Team {
   id?: string
   uid?: string
   name: string
@@ -21,7 +20,7 @@ interface Status {
   uid?: string
   name: string
   orderIndex: number
-  spaceId: string
+  teamId: string
   color: string
 }
 
@@ -63,4 +62,4 @@ interface User {
   role: 'admin' | 'user';
 }
 
-export type { Task, Space, Status, Goal, GoalStep, NumberGoalStep, TaskGoalStep, BooleanGoalStep, User };
+export type { Task, Team, Status, Goal, GoalStep, NumberGoalStep, TaskGoalStep, BooleanGoalStep, User };

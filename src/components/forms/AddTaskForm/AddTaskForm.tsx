@@ -16,12 +16,12 @@ import { StatusSelectInput } from '../../ui/StatusSelectInput/StatusSelectInput'
 import { PriorityChangeInput } from '../../ui/PriorityChangeInput/PriorityChangeInput'
 import { DateInputs } from '../../ui/DateInputs/DateInputs'
 import { NoStatuses } from '../../NoStatuses/NoStatuses'
-import { SpaceSelect } from '../../ui/SpaceSelect/SpaceSelect'
+import { TeamSelect } from '../../ui/TeamSelect/TeamSelect'
 
 interface AddTaskFormProps {
     defaultStatus?: Status
     showDateInputs?: boolean
-    showSpaceSelect?: boolean
+    showTeamSelect?: boolean
     defaultDate?: Dayjs
     addGoalStep?: boolean
     goalID?: string
@@ -31,7 +31,7 @@ interface AddTaskFormProps {
 export const AddTaskForm = ({
     defaultStatus,
     showDateInputs = false,
-    showSpaceSelect = false,
+    showTeamSelect = false,
     defaultDate = dayjs(),
     goalID,
     addGoalStep,
@@ -42,11 +42,11 @@ export const AddTaskForm = ({
     const { addDocument: addGoalStepDocument } = useDb('goalSteps')
     const closePopover = usePopoverContext()
     const newGoalCtx = useNewGoalContext()
-    const { selectedSpace, statuses } = useDataContext()
+    const { selectedTeam, statuses } = useDataContext()
     const [openDateInputs, setOpenDateInputs] = useState(showDateInputs)
     const [taskRef, setTaskRef] = useState<DocumentReference<any> | null>(null)
     //form inputs
-    const [space, setSpace] = useState(selectedSpace)
+    const [team, setTeam] = useState(selectedTeam)
     const [text, setText] = useState('')
     const [status, setStatus] = useState<Status | null>(defaultStatus ? defaultStatus : statuses && statuses[0])
     const [priority, setPriority] = useState('low')
@@ -80,7 +80,7 @@ export const AddTaskForm = ({
         let task: Task = {
             description: text,
             priority: priority,
-            spaceId: selectedSpace ? selectedSpace.id! : '',
+            teamId: selectedTeam ? selectedTeam.id! : '',
             statusId: status ? status.id! : '',
             fromDate: openDateInputs && (from.isBefore(due) || from.isSame(due)) ? from.unix() : null,
             dueDate: openDateInputs && (from.isBefore(due) || from.isSame(due)) ? due.unix() : null,
@@ -92,7 +92,7 @@ export const AddTaskForm = ({
 
         setText('')
         setStatus(defaultStatus || (statuses && statuses[0]))
-        setSpace(selectedSpace)
+        setTeam(selectedTeam)
         setPriority('low')
         setOpenDateInputs(showDateInputs)
         setDueDate(defaultDate.format('YYYY-MM-DDThh:mm'))
@@ -109,14 +109,14 @@ export const AddTaskForm = ({
                 className={`${styles.form} ${className}`}
                 {...props}
             >
-                {showSpaceSelect && <div>
-                    <label htmlFor='spaceSelect'>
-                        Space:
+                {showTeamSelect && <div>
+                    <label htmlFor='teamSelect'>
+                        Team:
                     </label>
-                    <SpaceSelect
-                        space={space}
-                        setSpace={setSpace}
-                        className={styles.spaceSelect}
+                    <TeamSelect
+                        team={team}
+                        setTeam={setTeam}
+                        className={styles.teamSelect}
                     />
                 </div>}
                 <label>
@@ -125,7 +125,7 @@ export const AddTaskForm = ({
                     <StatusSelectInput
                         status={status}
                         setStatus={setStatus}
-                        space={space}
+                        team={team}
                     />
                 </label>
                 <label>

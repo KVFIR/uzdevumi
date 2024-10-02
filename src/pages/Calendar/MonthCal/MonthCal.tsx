@@ -28,7 +28,7 @@ export const MonthCal = () => {
     }
 
     const handleKeyDown = (e: KeyboardEvent, monthDay: Dayjs) => {
-        if (e.key === 'Space' || e.key === 'Enter') {
+        if (e.key === 'Team' || e.key === 'Enter') {
             navigate(`../../${monthDay.format('DD.MM.YYYY')}/Day`)
         }
     }

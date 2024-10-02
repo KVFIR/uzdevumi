@@ -19,11 +19,11 @@ export const BoardHelp = () => {
 
     const boardHelpContent = [
         {
-            title: t('help.spaces'),
-            description: t('help.spacesDescription'),
+            title: t('help.teams'),
+            description: t('help.teamsDescription'),
             img: {
                 src: PANEL_SPACES,
-                alt: t('help.spaceSelectionButton'),
+                alt: t('help.teamSelectionButton'),
             },
         },
         {

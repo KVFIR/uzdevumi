@@ -5,10 +5,10 @@ import { getRandomIntFromInterval } from './getRandomIntFromInterval'
 import dayjs from 'dayjs'
 
 export const addDefaultContent = (uid: string) => {
-  const { defaultSpaces, defaultTasks, defaultStatuses, defaultGoals, defaultGoalSteps } = defaultData
+  const { defaultTeams, defaultTasks, defaultStatuses, defaultGoals, defaultGoalSteps } = defaultData
 
-  defaultSpaces.forEach(async (item, index) => {
-    await setDoc(doc(db, 'spaces', uid + index), {
+  defaultTeams.forEach(async (item: any, index: number) => {
+    await setDoc(doc(db, 'teams', uid + index), {
       ...item,
       uid: uid,
     })

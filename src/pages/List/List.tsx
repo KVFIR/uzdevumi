@@ -9,39 +9,39 @@ import { AnimatedPopover } from "../../components/AnimatedPopover/AnimatedPopove
 import { Layout } from "../../components/Layout/Layout/Layout";
 import { AddStatusForm } from "../../components/forms/AddStatusForm/AddStatusForm";
 import { TaskTable } from './TaskTable'
-import { NoSpaces } from '../../components/NoSpaces/NoSpaces';
-import { SpaceSelect } from '../../components/ui/SpaceSelect/SpaceSelect';
+import { NoTeams } from '../../components/NoTeams/NoTeams';
+import { TeamSelect } from '../../components/ui/TeamSelect/TeamSelect';
 import { ListHelp } from './ListHelp';
 
 export const List = () => {
     const { t } = useTranslation();
-    const { statuses, selectedSpace, setSelectedSpace } = useDataContext()
-    const spaceStatuses = statuses?.filter(status => status.spaceId === selectedSpace?.id)
+    const { statuses, selectedTeam, setSelectedTeam } = useDataContext()
+    const teamStatuses = statuses?.filter(status => status.teamId === selectedTeam?.id)
 
     return (
         <Layout title={t('navigation.list')}>
             <div className={styles.row}>
-                <SpaceSelect
-                    space={selectedSpace}
-                    setSpace={setSelectedSpace}
-                    className={styles.spaceSelect}
+                <TeamSelect
+                    team={selectedTeam}
+                    setTeam={setSelectedTeam}
+                    className={styles.teamSelect}
                 />
                 <ListHelp />
             </div>
-            {selectedSpace ?
+            {selectedTeam ?
                 <>
                     <div className={styles.newStatusContainer}>
-                        <AnimatedPopover className={styles.newStatusButton} buttonText={t('spaces.addNewStatus')}>
+                        <AnimatedPopover className={styles.newStatusButton} buttonText={t('teams.addNewStatus')}>
                             <AddStatusForm />
                         </AnimatedPopover>
                     </div>
-                    {spaceStatuses?.map((status: Status) =>
+                    {teamStatuses?.map((status: Status) =>
                         <TaskTable
                             key={status.id}
                             status={status}
                         />)
                     }</>
-                : <NoSpaces />}
+                : <NoTeams />}
         </Layout>
     );
 }

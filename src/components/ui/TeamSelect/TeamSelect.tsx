@@ -2,41 +2,41 @@
 import { useDataContext } from "../../../hooks/useDataContext";
 import { useTranslation } from 'react-i18next';
 //interfaces
-import { Space } from "../../../interfaces";
+import { Team } from "../../../interfaces";
 import { ComponentPropsWithoutRef } from 'react'
 //styles
-import styles from './SpaceSelect.module.scss'
+import styles from './TeamSelect.module.scss'
 //assets
 import unfold from '../../../assets/icons/unfold.svg'
 //components
 import { Fragment } from 'react'
 import { Listbox, Transition } from "@headlessui/react";
 
-interface SpaceSelectProps {
-    space: Space | null
-    setSpace: React.Dispatch<React.SetStateAction<Space | null>>
+interface TeamSelectProps {
+    team: Team | null
+    setTeam: React.Dispatch<React.SetStateAction<Team | null>>
     className?: string
 }
 
-export const SpaceSelect = ({ space, setSpace, className, ...props }: SpaceSelectProps & ComponentPropsWithoutRef<'div'>) => {
-    const { spaces } = useDataContext()
+export const TeamSelect = ({ team, setTeam, className, ...props }: TeamSelectProps & ComponentPropsWithoutRef<'div'>) => {
+    const { teams } = useDataContext()
     const { t } = useTranslation();
 
     return (
         <Listbox 
             as='div' 
-            className={`${styles.spaceSelect} ${className}`} 
+            className={`${styles.teamSelect} ${className}`} 
             {...props} 
-            value={space} 
-            onChange={setSpace}
-            defaultValue={null as Space | null}
+            value={team} 
+            onChange={setTeam}
+            defaultValue={null as Team | null}
         >
-            {space && <>
+            {team && <>
                 <Listbox.Button
                     className={styles.selectButton}
-                    aria-label={t('common.openSpacesList')}
+                    aria-label={t('common.openTeamsList')}
                 >
-                    {space.name}
+                    {team.name}
                     <img src={unfold} alt={t('common.twoArrows')} />
                 </Listbox.Button>
                 <Transition
@@ -46,16 +46,16 @@ export const SpaceSelect = ({ space, setSpace, className, ...props }: SpaceSelec
                     enterTo={styles.transitionEnterTo}
                 >
                     <Listbox.Options>
-                        {spaces?.map((space: Space) => (
+                        {teams?.map((team: Team) => (
                             <Listbox.Option
-                                key={space.id}
-                                value={space}
+                                key={team.id}
+                                value={team}
                                 as={Fragment}
                             >
                                 {({ active }) => (
                                     <li
                                         className={`${active ? styles.optionActive : ''}`}
-                                    >{space.name}</li>
+                                    >{team.name}</li>
                                 )}
                             </Listbox.Option>
                         ))}

@@ -1,6 +1,6 @@
 //interfaces
 import { MouseEvent } from 'react';
-import { Space, Task } from '../../../interfaces';
+import { Team, Task } from '../../../interfaces';
 //hooks
 import { useDataContext } from '../../../hooks/useDataContext';
 import { useDb } from '../../../hooks/useDb';
@@ -11,15 +11,15 @@ import { AnimatedPopover } from '../../AnimatedPopover/AnimatedPopover'
 
 interface TaskStatusChangeBtnProps {
     task: Task
-    space?: Space
+    team?: Team
 }
 
-export const TaskStatusChangeBtn = ({ task, space }: TaskStatusChangeBtnProps) => {
+export const TaskStatusChangeBtn = ({ task, team }: TaskStatusChangeBtnProps) => {
     const { updateDocument } = useDb('tasks')
-    const { statuses, spaces } = useDataContext()
+    const { statuses, teams } = useDataContext()
     const currentTaskStatus = statuses?.find(status => status.id === task.statusId)
-    const currentTaskSpace = spaces?.find(space => space.id === task.spaceId)
-    const spaceStatuses = space ? statuses?.filter(s => s.spaceId === space.id!) : statuses?.filter(s => s.spaceId === currentTaskSpace?.id)
+    const currentTaskTeam = teams?.find(team => team.id === task.teamId)
+    const teamStatuses = team ? statuses?.filter(s => s.teamId === team.id!) : statuses?.filter(s => s.teamId === currentTaskTeam?.id)
     const btnColor = currentTaskStatus && currentTaskStatus.color
 
     const handleClick = (e: MouseEvent, statusId: string) => {
@@ -35,7 +35,7 @@ export const TaskStatusChangeBtn = ({ task, space }: TaskStatusChangeBtnProps) =
             aria-label='Click to open list of available statuses'
         >
             <div className={styles.container}>
-                {spaceStatuses && spaceStatuses.map((status) => (
+                {teamStatuses && teamStatuses.map((status) => (
                     <button
                         key={status.id}
                         onClick={(e) => { handleClick(e, status.id!) }}

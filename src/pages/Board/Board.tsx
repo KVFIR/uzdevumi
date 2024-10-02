@@ -9,28 +9,28 @@ import { AddStatusForm } from '../../components/forms/AddStatusForm/AddStatusFor
 import { AnimatedPopover } from '../../components/AnimatedPopover/AnimatedPopover';
 import { Layout } from '../../components/Layout/Layout/Layout';
 import { StatusSection } from './StatusSection';
-import { NoSpaces } from '../../components/NoSpaces/NoSpaces';
-import { SpaceSelect } from '../../components/ui/SpaceSelect/SpaceSelect';
+import { NoTeams } from '../../components/NoTeams/NoTeams';
+import { TeamSelect } from '../../components/ui/TeamSelect/TeamSelect';
 import { BoardHelp } from './BoardHelp';
 
 export const Board = () => {
     const { t } = useTranslation();
-    const { statuses, selectedSpace, setSelectedSpace } = useDataContext()
-    const spaceStatuses = statuses?.filter(s => s.spaceId === selectedSpace?.id)
+    const { statuses, selectedTeam, setSelectedTeam } = useDataContext()
+    const teamStatuses = statuses?.filter(s => s.teamId === selectedTeam?.id)
 
     return (
         <Layout title={t('board.title')}>
             <div className={styles.row}>
-                <SpaceSelect
-                    space={selectedSpace}
-                    setSpace={setSelectedSpace}
-                    className={styles.spaceSelect}
+                <TeamSelect
+                    team={selectedTeam}
+                    setTeam={setSelectedTeam}
+                    className={styles.teamSelect}
                 />
                 <BoardHelp />
             </div>
-            {selectedSpace ?
+            {selectedTeam ?
                 <div className={styles.container}>
-                    {spaceStatuses?.map(status => (
+                    {teamStatuses?.map(status => (
                         <StatusSection
                             key={status.id}
                             status={status}
@@ -47,7 +47,7 @@ export const Board = () => {
                         <AddStatusForm />
                     </AnimatedPopover>
                 </div>
-                : <NoSpaces />}
+                : <NoTeams />}
         </Layout>
     );
 }

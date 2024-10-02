@@ -9,7 +9,7 @@ import { useDb } from "../../../hooks/useDb";
 export const AddStatusForm = () => {
     const { addDocument } = useDb('statuses')
     const closePopover = usePopoverContext()
-    const { statuses, selectedSpace } = useDataContext()
+    const { statuses, selectedTeam } = useDataContext()
     const [name, setName] = useState('')
     const [color, setColor] = useState('#FFFFFF')
 
@@ -19,7 +19,7 @@ export const AddStatusForm = () => {
             name: name,
             orderIndex: statuses && statuses.length !== 0 ? statuses[statuses.length - 1].orderIndex + 1 : 0,
             color: color,
-            spaceId: selectedSpace?.id
+            teamId: selectedTeam?.id
         })
         closePopover && closePopover()
         setName('')

@@ -3,14 +3,14 @@
 @import '../../../scss/mixins';
 @import '../../../scss/variables';
 
-.spacesSection {
+.teamsSection {
   @include mdScreen {
     grid-column: 2;
     grid-row-start: 1;
     grid-row-end: 4;
   }
 
-  .spaces {
+  .teams {
     @extend %nonTableSectionContent;
     flex-direction: column;
 
@@ -26,7 +26,7 @@
           font-style: italic;
         }
 
-        .spaceDeleteBtn {
+        .teamDeleteBtn {
           display: inline-block;
           position: absolute;
           right: 1rem;
@@ -35,7 +35,7 @@
       }
     }
 
-    .showAddSpaceBtn {
+    .showAddTeamBtn {
       @extend %baseButton;
       @extend %darkeningBorder;
       margin: auto 1rem 1rem 1rem;
@@ -43,7 +43,7 @@
     }
   }
 
-  .spacesCaption {
+  .teamsCaption {
     @extend %nonTableSectionCaption;
     background-color: $purple-1;
     color: $bright-1;

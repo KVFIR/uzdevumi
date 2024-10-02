@@ -17,11 +17,11 @@ export const ListHelp = () => {
 
     const listHelpContent = [
         {
-            title: t('help.spaces'),
-            description: t('help.spacesDescription'),
+            title: t('help.teams'),
+            description: t('help.teamsDescription'),
             img: {
                 src: LIST_SPACES,
-                alt: t('help.spaceSelectionButton'),
+                alt: t('help.teamSelectionButton'),
             },
         },
         {

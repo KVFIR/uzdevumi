@@ -13,13 +13,13 @@ interface StatusOrderChangeBtnProps {
 }
 
 export const StatusOrderChangeBtn = ({ variant, elemId, current }: StatusOrderChangeBtnProps) => {
-    const { statuses, selectedSpace } = useDataContext()
-    const currentSpaceStatuses = statuses?.filter(s => s.spaceId === selectedSpace?.id!)
+    const { statuses, selectedTeam } = useDataContext()
+    const currentTeamStatuses = statuses?.filter(s => s.teamId === selectedTeam?.id!)
     const { updateDocument } = useDb('statuses')
 
     const handleClick = () => {
         let inc = variant === 'up' || variant === 'left' ? -1 : 1
-        const adjacent = currentSpaceStatuses && currentSpaceStatuses[currentSpaceStatuses.findIndex((status) => status.id === elemId) + inc]
+        const adjacent = currentTeamStatuses && currentTeamStatuses[currentTeamStatuses.findIndex((status) => status.id === elemId) + inc]
         if (!adjacent) return
         updateDocument(elemId, { orderIndex: adjacent.orderIndex })
         updateDocument(adjacent.id!, { orderIndex: current.orderIndex })
