@@ -57,4 +57,10 @@ interface BooleanGoalStep extends GoalStep {
   description: string
 }
 
-export type { Task, Space, Status, Goal, GoalStep, NumberGoalStep, TaskGoalStep, BooleanGoalStep }
+interface User {
+  uid: string;
+  email: string;
+  role: 'admin' | 'user';
+}
+
+export type { Task, Space, Status, Goal, GoalStep, NumberGoalStep, TaskGoalStep, BooleanGoalStep, User };

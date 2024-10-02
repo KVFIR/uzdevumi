@@ -1,14 +1,18 @@
 import { UserContext } from '../contexts/UserContext'
-//hooks/contexts
 import { useContext } from 'react'
 import { useErrorPromptContext } from './useErrorPromptContext'
-//firebase
 import { addDoc, collection, deleteDoc, doc, updateDoc } from 'firebase/firestore'
 import { db } from '../firebase/config'
 
 export const useDb = (col: string) => {
-  const { user } = useContext(UserContext)
+  const userContext = useContext(UserContext)
   const { setIsError } = useErrorPromptContext()
+
+  if (!userContext) {
+    throw new Error("useDb must be used within a UserContextProvider")
+  }
+
+  const { user } = userContext
 
   const addDocument = async (doc: any) => {
     try {

@@ -6,9 +6,15 @@ import { auth } from '../firebase/config'
 import { signOut } from 'firebase/auth'
 
 export const useLogout = () => {
-  const { dispatch } = useContext(UserContext)
+  const userContext = useContext(UserContext)
   const [isPending, setisPending] = useState(false)
   const [error, setError] = useState(null)
+
+  if (!userContext) {
+    throw new Error("useLogout must be used within a UserContextProvider")
+  }
+
+  const { dispatch } = userContext
 
   const logout = () => {
     setisPending(true)

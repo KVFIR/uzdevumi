@@ -1,35 +1,43 @@
 import { UserContext } from '../contexts/UserContext'
-//hooks
-import { useState } from 'react'
-import { useContext } from 'react'
+import { useState, useContext } from 'react'
 import { useErrorPromptContext } from './useErrorPromptContext'
-//utils
 import { openAppHelp } from '../utils/openAppHelp'
 import { getErrorMessage } from '../utils/getErrorMessage'
-//firebase
-import { auth } from '../firebase/config'
+import { auth, db } from '../firebase/config'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { setDoc, doc } from 'firebase/firestore'
 import { addDefaultContent } from '../utils/addDefaultContent'
+import { User } from '../interfaces'
 
 export const useSignup = () => {
-  const { dispatch } = useContext(UserContext)
+  const userContext = useContext(UserContext)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const { setIsError } = useErrorPromptContext()
 
-  const signup = (email: string, password: string) => {
+  if (!userContext) {
+    throw new Error("useSignup must be used within a UserContextProvider")
+  }
+
+  const { dispatch } = userContext
+
+  const signup = async (email: string, password: string) => {
     setErrorMessage(null)
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        addDefaultContent(userCredential.user.uid)
-        dispatch({ type: 'LOGIN', payload: userCredential.user })
-        openAppHelp()
-      })
-      .catch((err) => {
-        const message = getErrorMessage(err.code)
-        setErrorMessage(message)
-        !message && setIsError(true)
-        // displays error message when user passes wrong email/password, every other auth error fires ErrorPrompt
-      })
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+      const newUser: User = {
+        uid: userCredential.user.uid,
+        email: userCredential.user.email!,
+        role: 'user',
+      }
+      await setDoc(doc(db, 'users', newUser.uid), newUser)
+      await addDefaultContent(newUser.uid)
+      dispatch({ type: 'LOGIN', payload: newUser })
+      openAppHelp()
+    } catch (err: any) {
+      const message = getErrorMessage(err.code)
+      setErrorMessage(message)
+      !message && setIsError(true)
+    }
   }
 
   return { errorMessage, signup }

@@ -96,17 +96,6 @@
 
   - **Обновление модели пользователя**
 
-    ```typescript
-    // src/interfaces.ts
-    interface User {
-      id?: string;
-      uid: string;
-      email: string;
-      role: 'admin' | 'user';
-      teamId?: string;
-    }
-    ```
-
   - **Обновление логики аутентификации**
 
     - При входе пользователя сохранять его роль в контексте данных.
@@ -128,26 +117,9 @@
 
     - В файлах локализации заменить `Telpas` на `Komandas`.
 
-    ```json
-    // public/locales/en.json
-    {
-      "spaces": {
-        // ...
-        "addNewTeam": "Add new team"
-      }
-    }
-    ```
-
 - **Шаг 4: Ограничение прав на редактирование команд**
 
   - **Добавление проверок роли в компонентах создания и редактирования команд**
-
-    ```typescript
-    // src/components/forms/AddTeamForm/AddTeamForm.tsx
-    if (currentUser.role !== 'admin') {
-      return null;
-    }
-    ```
 
   - **Скрытие кнопок и ссылок для пользователей**
 
@@ -156,18 +128,6 @@
 - **Шаг 5: Создание страницы `AdminTaskOverview`**
 
   - **Создание нового компонента**
-
-    ```typescript
-    // src/pages/AdminTaskOverview/AdminTaskOverview.tsx
-    const AdminTaskOverview = () => {
-      // Проверка роли администратора
-      if (currentUser.role !== 'admin') {
-        return <Redirect to="/" />;
-      }
-
-      // Логика получения и отображения всех задач по командам
-    };
-    ```
 
   - **Добавление маршрута**
 
@@ -184,19 +144,9 @@
 
   - **Обновление пользователя в базе данных**
 
-    ```typescript
-    // Пример функции обновления
-    updateUser(userId, { teamId: selectedTeamId });
-    ```
-
 - **Шаг 7: Обновление контекста данных и ограничение доступа**
 
   - **Фильтрация данных по командам для обычных пользователей**
-
-    ```typescript
-    // При получении задач учитывать команду пользователя
-    const userTasks = tasks.filter(task => task.teamId === currentUser.teamId);
-    ```
 
   - **Ограничение доступа к командам**
 
@@ -211,60 +161,6 @@
   - **Проверка корректности прав доступа**
 
     - Убедиться, что пользователи не могут получить доступ к запрещенным страницам или функциям.
-
-- **Шаг 9: Коммиты и документирование изменений**
-
-  - **Обновление версии и документации**
-
-    - Изменить версию в `package.json` на новую минорную версию, например, `1.2.0`.
-    - Добавить изменения в `CHANGELOG.md`.
-
-      ```markdown
-      ## [1.2.0] - 2023-10-05
-
-      ### Added
-      - Implemented admin role with full task moderation rights.
-      - Converted Spaces to Teams, editable only by admin.
-      - Added admin-only page with all tasks grouped by teams.
-      - Added functionality for admin to assign teams to users.
-      ```
-
-    - Обновить `README.md` с описанием новых возможностей.
-
-  - **Коммит изменений**
-
-    ```bash
-    git add .
-    git commit -m "Implement admin role and team management features"
-    ```
-
-- **Шаг 10: Слияние с основной веткой и завершение работы**
-
-  - **Тестирование стабильности**
-
-    - Убедиться, что новая версия работает без ошибок.
-
-  - **Слияние с `master`**
-
-    ```bash
-    git checkout master
-    git merge feature/admin-and-teams
-    ```
-
-  - **Удаление ветки после слияния**
-
-    ```bash
-    git branch -d feature/admin-and-teams
-    ```
-
-**Рекомендации:**
-
-- **Регулярно обновляйте основную ветку:**
-
-  ```bash
-  git checkout feature/admin-and-teams
-  git rebase master
-  ```
 
 - **Делайте частые и небольшие коммиты с понятными сообщениями.**
 

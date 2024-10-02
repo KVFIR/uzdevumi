@@ -20,44 +20,54 @@ import { MonthCal } from './pages/Calendar/MonthCal/MonthCal';
 import { NewGoalContextProvider } from './contexts/NewGoalContext';
 
 export function App() {
-  const { user, authReady } = useContext(UserContext)
+  const userContext = useContext(UserContext)
+
+  if (!userContext) {
+    // Если контекст не определен, можно вернуть загрузочный компонент или null
+    return null;
+  }
+
+  const { user, authIsReady } = userContext;
 
   return (
     <>
-      {authReady && <>
-        {user ?
-          <DataContextProvider uid={user.uid}>
-            <Routes>
-              <Route path="Dashboard" >
-                <Route path=':taskID' element={<TaskPage />} />
-                <Route index element={<Dashboard />} />
-              </Route>
-              <Route path="List" element={<List />} />
-              <Route path="Board" element={<Board />} />
-              <Route path="Calendar" element={<Calendar />}>
-                <Route path=':date'>
-                  <Route element={<DayCal />} path='Day' />
-                  <Route element={<WeekCal />} path='Week' />
-                  <Route element={<MonthCal />} path='Month' />
+      {authIsReady && (
+        <>
+          {user ? (
+            <DataContextProvider uid={user.uid}>
+              <Routes>
+                <Route path="Dashboard" >
+                  <Route path=':taskID' element={<TaskPage />} />
+                  <Route index element={<Dashboard />} />
                 </Route>
-              </Route>
-              <Route path="Goals" >
-                <Route path="NewGoal" element={<NewGoalContextProvider><NewGoal /></NewGoalContextProvider>}></Route>
-                <Route path=":goalID" element={<GoalPage />}></Route>
-                <Route index element={<Goals />}></Route>
-              </Route>
-              <Route path="*" element={<Navigate to='/Dashboard' replace />} />
+                <Route path="List" element={<List />} />
+                <Route path="Board" element={<Board />} />
+                <Route path="Calendar" element={<Calendar />}>
+                  <Route path=':date'>
+                    <Route element={<DayCal />} path='Day' />
+                    <Route element={<WeekCal />} path='Week' />
+                    <Route element={<MonthCal />} path='Month' />
+                  </Route>
+                </Route>
+                <Route path="Goals" >
+                  <Route path="NewGoal" element={<NewGoalContextProvider><NewGoal /></NewGoalContextProvider>}></Route>
+                  <Route path=":goalID" element={<GoalPage />}></Route>
+                  <Route index element={<Goals />}></Route>
+                </Route>
+                <Route path="*" element={<Navigate to='/Dashboard' replace />} />
+              </Routes>
+            </DataContextProvider>
+          ) : (
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route
+                path="*"
+                element={<Navigate to="/" replace />}
+              />
             </Routes>
-          </DataContextProvider>
-          :
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route
-              path="*"
-              element={<Navigate to="/" replace />}
-            />
-          </Routes>}
-      </>}
+          )}
+        </>
+      )}
       <ErrorPrompt />
     </>
   );
