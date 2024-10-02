@@ -14,17 +14,22 @@ import width from '../../../assets/icons/width.svg'
 import monitoring from '../../../assets/icons/monitoring.svg'
 import menu from '../../../assets/icons/menu.svg'
 import logoutIcon from '../../../assets/icons/logout.svg'
+import adminIcon from '../../../assets/icons/monitoring.svg'
 //styles
 import styles from './Sidebar.module.scss'
 //components
 import { Link } from 'react-router-dom';
 import { AppHelp } from './AppHelp';
+import { useContext } from 'react';
+import { UserContext } from '../../../contexts/UserContext';
 
 export const Sidebar = () => {
     const { t } = useTranslation();
     const { logout } = useLogout()
     const [toggleSidebar, setToggleSidebar] = useState(false)
     const sidebarPanelRef = useRef<HTMLDivElement | null>(null)
+    const userContext = useContext(UserContext);
+    const user = userContext?.user;
 
     if (toggleSidebar && sidebarPanelRef.current) {
         onClickOutside(sidebarPanelRef.current, () => { setToggleSidebar(!toggleSidebar) })
@@ -75,6 +80,12 @@ export const Sidebar = () => {
                             <img src={monitoring} alt={t('navigation.goals')} />
                             <span>{t('navigation.goals')}</span>
                         </Link>
+                        {user?.role === 'admin' && (
+                            <Link to="/Admin" className={styles.navLink}>
+                                <img src={adminIcon} alt="Admin Tasks" />
+                                <span>Admin</span>
+                            </Link>
+                        )}
                     </nav>
                 </div>
                 <div className={styles.settings}>

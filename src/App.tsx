@@ -18,6 +18,7 @@ import { DayCal } from './pages/Calendar/DayCal/DayCal';
 import { WeekCal } from './pages/Calendar/WeekCal/WeekCal';
 import { MonthCal } from './pages/Calendar/MonthCal/MonthCal';
 import { NewGoalContextProvider } from './contexts/NewGoalContext';
+import { AdminList } from './pages/AdminList/AdminList';
 
 export function App() {
   const userContext = useContext(UserContext)
@@ -54,6 +55,7 @@ export function App() {
                   <Route path=":goalID" element={<GoalPage />}></Route>
                   <Route index element={<Goals />}></Route>
                 </Route>
+                <Route path="Admin" element={<AdminList />} />
                 <Route path="*" element={<Navigate to='/Dashboard' replace />} />
               </Routes>
             </DataContextProvider>
