@@ -7,7 +7,6 @@ import styles from './MonthCal.module.scss'
 import { useCalendarOutletContext } from "../Calendar";
 import { useDataContext } from "../../../hooks/useDataContext";
 import { useNavigate } from "react-router-dom";
-import { useTranslation } from 'react-i18next';
 //utils
 import { getTasksWithinMonth } from '../../../utils/getTasksWithinMonth'
 import { getDaysOfMonth } from '../../../utils/getDaysOfMonth'
@@ -17,7 +16,6 @@ import { TaskBadge } from "./TaskBadge";
 import { SubHeader } from "../Subheader/SubHeader";
 
 export const MonthCal = () => {
-    const { t } = useTranslation();
     const navigate = useNavigate()
     const { date } = useCalendarOutletContext()
     const { tasks } = useDataContext()

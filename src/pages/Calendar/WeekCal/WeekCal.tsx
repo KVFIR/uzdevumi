@@ -1,5 +1,4 @@
 import { Dayjs } from "dayjs";
-import { useTranslation } from 'react-i18next';
 //styles
 import styles from './WeekCal.module.scss'
 //hooks
@@ -15,7 +14,6 @@ import { SubHeader } from "../Subheader/SubHeader";
 import { Link } from "react-router-dom";
 
 export const WeekCal = () => {
-    const { t } = useTranslation();
     const { date } = useCalendarOutletContext()
     const { tasks } = useDataContext()
     const weekDays: Dayjs[] = getDaysOfWeek(date)
