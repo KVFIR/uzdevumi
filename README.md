@@ -1,7 +1,5 @@
 # Task Manager
 
-Current version: 1.1.2
-
 Task Manager is a fairly customizable work management app that uses some popular task tracking solutions. The app includes a calendar, to-do list, semi-kanban board, and goal progress tracking.
 
 ## Table of contents:
