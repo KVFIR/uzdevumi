@@ -10,9 +10,10 @@ interface Task {
 }
 
 interface Team {
-  id?: string
-  uid?: string
-  name: string
+  id?: string;
+  name: string;
+  color: string;
+  uid: string;
 }
 
 interface Status {

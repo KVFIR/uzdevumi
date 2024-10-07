@@ -122,3 +122,27 @@
     background-color: rgb(255, 255, 255);
   }
 }
+
+.teamText {
+  @extend %baseTableCaption;
+  margin-left: 0.25rem;
+}
+
+.newTeamContainer {
+  margin: 0;
+  margin-bottom: 1rem;
+  width: fit-content;
+  border-radius: 0.5rem;
+  position: relative;
+  z-index: 2000;
+
+  .newTeamButton {
+    @extend %baseButton;
+    @extend %darkeningBorder;
+    position: relative;
+    border: rgba(0, 0, 0, 0) solid 3px;
+    background-color: rgb(255, 255, 255);
+  }
+}
+
+// Add any additional styles needed for team-based layout

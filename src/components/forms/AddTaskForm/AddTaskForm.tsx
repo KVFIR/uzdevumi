@@ -3,7 +3,7 @@ import { usePopoverContext } from '../../AnimatedPopover/AnimatedPopover'
 //interaces
 import { FormEvent, ComponentPropsWithoutRef } from 'react'
 import { DocumentReference } from 'firebase/firestore'
-import { Status, Task } from '../../../interfaces'
+import { Status, Task, Team } from '../../../interfaces'
 //styles
 import styles from './AddTaskForm.module.scss'
 //hooks
@@ -26,6 +26,7 @@ interface AddTaskFormProps {
     addGoalStep?: boolean
     goalID?: string
     className?: string
+    teamId?: string // Добавляем новый проп teamId
 }
 
 export const AddTaskForm = ({
@@ -36,17 +37,18 @@ export const AddTaskForm = ({
     goalID,
     addGoalStep,
     className,
+    teamId, // Добавляем новый проп teamId
     ...props
 }: AddTaskFormProps & ComponentPropsWithoutRef<'form'>) => {
     const { addDocument: addTaskDocument } = useDb('tasks')
     const { addDocument: addGoalStepDocument } = useDb('goalSteps')
     const closePopover = usePopoverContext()
     const newGoalCtx = useNewGoalContext()
-    const { selectedTeam, statuses } = useDataContext()
+    const { selectedTeam, statuses, teams } = useDataContext()
     const [openDateInputs, setOpenDateInputs] = useState(showDateInputs)
     const [taskRef, setTaskRef] = useState<DocumentReference<any> | null>(null)
     //form inputs
-    const [team, setTeam] = useState(selectedTeam)
+    const [team, setTeam] = useState<Team | null>(teamId ? teams?.find(t => t.id === teamId) || null : selectedTeam)
     const [text, setText] = useState('')
     const [status, setStatus] = useState<Status | null>(defaultStatus ? defaultStatus : statuses && statuses[0])
     const [priority, setPriority] = useState('low')
@@ -70,7 +72,7 @@ export const AddTaskForm = ({
             taskID: taskRef.id!,
             goalID: goalID
         })
-    }, [taskRef, addGoalStep, newGoalCtx, addGoalStepDocument, goalID]) // eslint-disable-line react-hooks/exhaustive-deps
+    }, [taskRef, addGoalStep, newGoalCtx, addGoalStepDocument, goalID])
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
@@ -80,7 +82,7 @@ export const AddTaskForm = ({
         let task: Task = {
             description: text,
             priority: priority,
-            teamId: selectedTeam ? selectedTeam.id! : '',
+            teamId: team ? team.id! : '',
             statusId: status ? status.id! : '',
             fromDate: openDateInputs && (from.isBefore(due) || from.isSame(due)) ? from.unix() : null,
             dueDate: openDateInputs && (from.isBefore(due) || from.isSame(due)) ? due.unix() : null,
@@ -92,7 +94,7 @@ export const AddTaskForm = ({
 
         setText('')
         setStatus(defaultStatus || (statuses && statuses[0]))
-        setTeam(selectedTeam)
+        setTeam(teamId ? teams?.find(t => t.id === teamId) || null : selectedTeam)
         setPriority('low')
         setOpenDateInputs(showDateInputs)
         setDueDate(defaultDate.format('YYYY-MM-DDThh:mm'))

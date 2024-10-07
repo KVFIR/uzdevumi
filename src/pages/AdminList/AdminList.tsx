@@ -1,47 +1,38 @@
 import { useTranslation } from 'react-i18next';
 import { useDataContext } from '../../hooks/useDataContext';
-//styles
 import styles from './AdminList.module.scss'
-//interfaces
-import { Status } from '../../interfaces'
-//components
+import { Team } from '../../interfaces'
 import { AnimatedPopover } from "../../components/AnimatedPopover/AnimatedPopover";
 import { Layout } from "../../components/Layout/Layout/Layout";
-import { AddStatusForm } from "../../components/forms/AddStatusForm/AddStatusForm";
-import { TaskTable } from './AdminTaskTable'
+import { AddTeamForm } from "../../components/forms/AddTeamForm/AddTeamForm";
+import { AdminTeamTable } from './AdminTeamTable'
 import { NoTeams } from '../../components/NoTeams/NoTeams';
-import { TeamSelect } from '../../components/ui/TeamSelect/TeamSelect';
 import { ListHelp } from './AdminListHelp';
 
 export const AdminList = () => {
     const { t } = useTranslation();
-    const { statuses, selectedTeam, setSelectedTeam } = useDataContext()
-    const teamStatuses = statuses?.filter(status => status.teamId === selectedTeam?.id)
+    const { teams } = useDataContext()
 
     return (
-        <Layout title={t('navigation.list')}>
+        <Layout title={t('navigation.adminList')}>
             <div className={styles.row}>
-                <TeamSelect
-                    team={selectedTeam}
-                    setTeam={setSelectedTeam}
-                    className={styles.teamSelect}
-                />
                 <ListHelp />
             </div>
-            {selectedTeam ?
-                <>
-                    <div className={styles.newStatusContainer}>
-                        <AnimatedPopover className={styles.newStatusButton} buttonText={t('teams.addNewStatus')}>
-                            <AddStatusForm />
-                        </AnimatedPopover>
-                    </div>
-                    {teamStatuses?.map((status: Status) =>
-                        <TaskTable
-                            key={status.id}
-                            status={status}
-                        />)
-                    }</>
-                : <NoTeams />}
+            <div className={styles.newTeamContainer}>
+                <AnimatedPopover className={styles.newTeamButton} buttonText={t('teams.addNewTeam')}>
+                    <AddTeamForm handleShowAddTeamForm={() => {}} />
+                </AnimatedPopover>
+            </div>
+            {teams && teams.length > 0 ? (
+                teams.map((team: Team) => (
+                    <AdminTeamTable
+                        key={team.id}
+                        team={team}
+                    />
+                ))
+            ) : (
+                <NoTeams />
+            )}
         </Layout>
     );
 }
