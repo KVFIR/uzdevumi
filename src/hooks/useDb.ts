@@ -14,12 +14,12 @@ export const useDb = (col: string) => {
 
   const { user } = userContext
 
-  const addDocument = async (doc: any) => {
-    if (col === 'teams' && user?.role !== 'admin') {
+  const addDocument = async (doc: any, collectionName: string = col) => {
+    if (collectionName === 'teams' && user?.role !== 'admin') {
       throw new Error('Only admins can add teams')
     }
     try {
-      const ref = await addDoc(collection(db, col), { ...doc, uid: user?.uid })
+      const ref = await addDoc(collection(db, collectionName), { ...doc, uid: user?.uid })
       return ref
     } catch {
       setIsError(true)
