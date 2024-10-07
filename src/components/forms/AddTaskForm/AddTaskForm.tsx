@@ -19,13 +19,15 @@ import { NoStatuses } from '../../NoStatuses/NoStatuses'
 import { TeamSelect } from '../../ui/TeamSelect/TeamSelect'
 
 interface AddTaskFormProps {
+    className?: string
     defaultStatus?: Status
+    defaultTeam?: Team
+    handleShowAddTaskForm?: () => void
     showDateInputs?: boolean
     showTeamSelect?: boolean
     defaultDate?: Dayjs
     addGoalStep?: boolean
     goalID?: string
-    className?: string
     teamId?: string // Добавляем новый проп teamId
 }
 

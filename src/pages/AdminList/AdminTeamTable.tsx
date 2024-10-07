@@ -1,12 +1,13 @@
 import { useTranslation } from 'react-i18next';
-import { useState, useRef } from 'react'
+import { useState, useRef, useMemo } from 'react'
 import { useDataContext } from '../../hooks/useDataContext'
 import { useTeamTasks } from '../../hooks/useTeamTasks'
+import { useTeamOnDrop } from '../../hooks/useTeamOnDrop'
 import styles from './AdminList.module.scss'
 import { AnimatedPopover } from '../../components/AnimatedPopover/AnimatedPopover'
 import { AddTaskForm } from '../../components/forms/AddTaskForm/AddTaskForm'
 import { TaskTableItem } from '../../components/TaskTableItem/TaskTableItem'
-import { Team, Task, Status } from '../../interfaces'
+import { Team, Task } from '../../interfaces'
 
 interface AdminTeamTableProps {
     team: Team
@@ -18,12 +19,35 @@ export const AdminTeamTable = ({ team }: AdminTeamTableProps) => {
     const { statuses } = useDataContext()
     const [showTable, setShowTable] = useState(true)
     const { tasks } = useTeamTasks(team.id || '')
+    const { teamOnDropAttributes } = useTeamOnDrop(team, ref)
 
-    // Найдем первый статус для текущей команды
-    const defaultStatus = statuses?.find((status: Status) => status.teamId === team.id)
+    const [filterStatus, setFilterStatus] = useState<string>('all')
+    const [sortBy, setSortBy] = useState<'dueDate' | 'priority'>('dueDate')
+    const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
+
+    const filteredAndSortedTasks = useMemo(() => {
+        let filtered = tasks
+        if (filterStatus !== 'all') {
+            filtered = tasks.filter(task => task.statusId === filterStatus)
+        }
+
+        return filtered.sort((a, b) => {
+            if (sortBy === 'dueDate') {
+                return sortOrder === 'asc' 
+                    ? (new Date(a.dueDate || 0).getTime() - new Date(b.dueDate || 0).getTime())
+                    : (new Date(b.dueDate || 0).getTime() - new Date(a.dueDate || 0).getTime())
+            } else {
+                const priorityA = typeof a.priority === 'number' ? a.priority : 0;
+                const priorityB = typeof b.priority === 'number' ? b.priority : 0;
+                return sortOrder === 'asc'
+                    ? priorityA - priorityB
+                    : priorityB - priorityA
+            }
+        })
+    }, [tasks, filterStatus, sortBy, sortOrder])
 
     return (
-        <table className={styles.listContainer} ref={ref}>
+        <table className={styles.listContainer} ref={ref} {...teamOnDropAttributes}>
             <caption>
                 <span
                     className={styles.teamText}
@@ -38,13 +62,32 @@ export const AdminTeamTable = ({ team }: AdminTeamTableProps) => {
                 >
                     <AddTaskForm
                         className={styles.addTaskForm}
-                        defaultStatus={defaultStatus}
-                        teamId={team.id}
-                        showTeamSelect={false} // Добавляем этот проп, чтобы скрыть выбор команды
+                        defaultTeam={team}
                     />
                 </AnimatedPopover>
             </caption>
             <tbody>
+                <tr>
+                    <th colSpan={2}>
+                        <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}>
+                            <option value="all">{t('filter.allStatuses')}</option>
+                            {statuses && statuses.map(status => (
+                                <option key={status.id} value={status.id}>{status.name}</option>
+                            ))}
+                        </select>
+                    </th>
+                    <th>
+                        <select value={sortBy} onChange={(e) => setSortBy(e.target.value as 'dueDate' | 'priority')}>
+                            <option value="dueDate">{t('sort.dueDate')}</option>
+                            <option value="priority">{t('sort.priority')}</option>
+                        </select>
+                    </th>
+                    <th>
+                        <button onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}>
+                            {sortOrder === 'asc' ? '↑' : '↓'}
+                        </button>
+                    </th>
+                </tr>
                 <tr>
                     <th colSpan={2} aria-hidden='true' />
                     <th className={`${styles.thDueDate} ${styles.smallCell}`}>
@@ -55,8 +98,8 @@ export const AdminTeamTable = ({ team }: AdminTeamTableProps) => {
                     </th>
                 </tr>
                 {showTable ? (
-                    tasks && tasks.length > 0 ? (
-                        tasks.map((task: Task) => (
+                    filteredAndSortedTasks.length > 0 ? (
+                        filteredAndSortedTasks.map((task: Task) => (
                             <TaskTableItem key={task.id} task={task} draggable />
                         ))
                     ) : (
