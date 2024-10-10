@@ -76,10 +76,6 @@ export const Sidebar = () => {
                             <img src={calendar} alt={t('navigation.calendar')} />
                             <span>{t('navigation.calendar')}</span>
                         </Link>
-                        <Link to='/Goals'>
-                            <img src={monitoring} alt={t('navigation.goals')} />
-                            <span>{t('navigation.goals')}</span>
-                        </Link>
                         {user?.role === 'admin' && (
                             <Link to="/Admin" className={styles.navLink}>
                                 <img src={adminIcon} alt="Admin Tasks" />

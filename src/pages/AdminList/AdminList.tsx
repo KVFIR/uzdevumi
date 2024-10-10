@@ -13,6 +13,9 @@ export const AdminList = () => {
     const { t } = useTranslation();
     const { teams } = useDataContext()
 
+    // Сортируем команды по orderIndex
+    const sortedTeams = teams ? [...teams].sort((a, b) => a.orderIndex - b.orderIndex) : []
+
     return (
         <Layout title={t('navigation.adminList')}>
             <div className={styles.row}>
@@ -23,8 +26,8 @@ export const AdminList = () => {
                     <AddTeamForm handleShowAddTeamForm={() => {}} />
                 </AnimatedPopover>
             </div>
-            {teams && teams.length > 0 ? (
-                teams.map((team: Team) => (
+            {sortedTeams.length > 0 ? (
+                sortedTeams.map((team: Team) => (
                     <AdminTeamTable
                         key={team.id}
                         team={team}

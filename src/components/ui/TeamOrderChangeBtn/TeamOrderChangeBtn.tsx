@@ -1,7 +1,7 @@
+import { useDataContext } from '../../../hooks/useDataContext'
+import { useDb } from '../../../hooks/useDb'
 import { Team } from '../../../interfaces'
 import styles from './TeamOrderChangeBtn.module.scss'
-import { useDb } from '../../../hooks/useDb'
-import { useDataContext } from '../../../hooks/useDataContext'
 
 interface TeamOrderChangeBtnProps {
     variant: 'up' | 'down'
@@ -16,20 +16,31 @@ export const TeamOrderChangeBtn = ({ variant, elemId, current }: TeamOrderChange
     const handleClick = () => {
         if (!teams) return
 
-        const currentIndex = teams.findIndex(team => team.id === elemId)
+        const currentIndex = teams.findIndex(t => t.id === elemId)
         if (currentIndex === -1) return
 
-        let inc = variant === 'up' ? -1 : 1
-        const adjacent = teams[currentIndex + inc]
-        if (!adjacent) return
+        const inc = variant === 'up' ? -1 : 1
+        const adjacentIndex = currentIndex + inc
+        
+        // Проверяем, не выходим ли мы за границы массива
+        if (adjacentIndex < 0 || adjacentIndex >= teams.length) return
 
-        updateDocument(elemId, { orderIndex: adjacent.orderIndex })
-        updateDocument(adjacent.id!, { orderIndex: current.orderIndex })
+        const adjacentTeam = teams[adjacentIndex]
 
         const newTeams = [...teams]
-        newTeams[currentIndex] = { ...adjacent, orderIndex: current.orderIndex }
-        newTeams[currentIndex + inc] = { ...current, orderIndex: adjacent.orderIndex }
+        // Меняем местами текущую команду и соседнюю
+        newTeams[currentIndex] = adjacentTeam
+        newTeams[adjacentIndex] = current
 
+        // Обновляем orderIndex для обеих команд
+        newTeams[currentIndex].orderIndex = currentIndex
+        newTeams[adjacentIndex].orderIndex = adjacentIndex
+
+        // Обновляем базу данных
+        updateDocument(elemId, { orderIndex: adjacentIndex })
+        updateDocument(adjacentTeam.id!, { orderIndex: currentIndex })
+
+        // Обновляем состояние приложения
         updateTeams(newTeams)
     }
 

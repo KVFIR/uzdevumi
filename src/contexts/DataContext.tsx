@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, Dispatch, useEffect, useState, useReducer } from "react";
 import { useCollectionSub } from '../hooks/useCollectionSub';
 import { Task, Team, Status, Goal, NumberGoalStep, BooleanGoalStep, TaskGoalStep } from '../interfaces'
 
@@ -22,9 +22,30 @@ export interface DataContextInterface {
     setSelectedTeam: React.Dispatch<React.SetStateAction<Team | null>>
     isPending: boolean
     updateTeams: (teams: Team[]) => void
+    dispatch: Dispatch<DataAction>
 }
 
+export type DataAction =
+  | { type: 'SET_TEAMS'; payload: Team[] | null }
+  | { type: 'SET_TASKS'; payload: Task[] | null }
+
 export const DataContext = createContext<DataContextInterface | null>(null)
+
+const initialState = {
+    teams: null,
+    tasks: null
+};
+
+const dataReducer = (state: any, action: DataAction) => {
+    switch (action.type) {
+        case 'SET_TEAMS':
+            return { ...state, teams: action.payload };
+        case 'SET_TASKS':
+            return { ...state, tasks: action.payload };
+        default:
+            return state;
+    }
+};
 
 export const DataContextProvider = ({ children, uid }: DataContextProviderProps) => {
     const teams = useCollectionSub('teams', uid) as collectionData<Team>
@@ -35,6 +56,8 @@ export const DataContextProvider = ({ children, uid }: DataContextProviderProps)
     const [selectedTeam, setSelectedTeam] = useState<Team | null>(null)
     const [teamsData, setTeamsData] = useState<Team[] | null>(null)
 
+    const [state, dispatch] = useReducer(dataReducer, initialState);
+
     useEffect(() => {
         teams.data && setSelectedTeam(teams.data[0])
         teams.data && setTeamsData(teams.data)
@@ -42,11 +65,12 @@ export const DataContextProvider = ({ children, uid }: DataContextProviderProps)
 
     const updateTeams = (newTeams: Team[]) => {
         setTeamsData(newTeams)
+        dispatch({ type: 'SET_TEAMS', payload: newTeams })
     }
 
     const isAnyDataPending = teams.isPending && tasks.isPending && statuses.isPending && goals.isPending && goalSteps.isPending
 
-    const data = {
+    const data: DataContextInterface = {
         tasks: tasks.data,
         teams: teamsData,
         statuses: statuses.data && statuses.data.sort((a, b) => a.orderIndex - b.orderIndex),
@@ -56,6 +80,7 @@ export const DataContextProvider = ({ children, uid }: DataContextProviderProps)
         goalSteps: goalSteps.data,
         isPending: isAnyDataPending,
         updateTeams,
+        dispatch // Добавляем dispatch в объект data
     }
 
     return (

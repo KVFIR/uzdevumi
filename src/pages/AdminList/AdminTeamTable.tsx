@@ -9,6 +9,7 @@ import { AddTaskForm } from '../../components/forms/AddTaskForm/AddTaskForm'
 import { TaskTableItem } from '../../components/TaskTableItem/TaskTableItem'
 import { Team, Task } from '../../interfaces'
 import { TeamOrderChangeBtn } from '../../components/ui/TeamOrderChangeBtn/TeamOrderChangeBtn'
+import { TeamHideBtn } from '../../components/ui/TeamHideBtn/TeamHideBtn' 
 
 interface AdminTeamTableProps {
     team: Team
@@ -17,13 +18,15 @@ interface AdminTeamTableProps {
 export const AdminTeamTable = ({ team }: AdminTeamTableProps) => {
     const { t } = useTranslation();
     const ref = useRef<HTMLTableElement>(null)
+    const { tasks: allTasks } = useDataContext()
     const [showTable, setShowTable] = useState(true)
-    const { tasks } = useTeamTasks(team.id || '')
+    const teamTasks = allTasks?.filter((task: Task) => task.teamId === team.id)
     const { teamOnDropAttributes } = useTeamOnDrop(team, ref)
 
     return (
         <table className={styles.listContainer} ref={ref} {...teamOnDropAttributes}>
             <caption>
+                <TeamHideBtn showTeam={showTable} setShowTeam={setShowTable} />
                 <span className={styles.teamText}>
                     {team.name.toUpperCase()}
                 </span>
@@ -58,12 +61,8 @@ export const AdminTeamTable = ({ team }: AdminTeamTableProps) => {
                         />
                     </th>
                 </tr>
-                {showTable ? (
-                    tasks.length > 0 ? (
-                        tasks.map((task: Task) => (
-                            <TaskTableItem key={task.id} task={task} draggable />
-                        ))
-                    ) : (
+                {showTable ? <>
+                    {!teamTasks || teamTasks.length === 0 ?
                         <tr>
                             <td
                                 className={styles.noTasks}
@@ -71,14 +70,15 @@ export const AdminTeamTable = ({ team }: AdminTeamTableProps) => {
                                 {t('tasks.noTasks')}
                             </td>
                         </tr>
-                    )
-                ) : (
+                        : teamTasks.map((task: Task) => (
+                            <TaskTableItem key={task.id} task={task} draggable />
+                        ))}</>
+                    :
                     <tr>
                         <td
                             colSpan={4}
                             className={styles.hiddenTableCell} />
-                    </tr>
-                )}
+                    </tr>}
             </tbody>
         </table>
     );
