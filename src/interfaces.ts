@@ -1,4 +1,4 @@
-interface Task {
+export interface Task {
   id?: string
   uid?: string
   description: string
@@ -9,7 +9,7 @@ interface Task {
   statusId: string
 }
 
-interface Team {
+export interface Team {
   id?: string;
   name: string;
   color: string;
@@ -17,7 +17,7 @@ interface Team {
   orderIndex: number;
 }
 
-interface Status {
+export interface Status {
   id?: string
   uid?: string
   name: string
@@ -26,14 +26,14 @@ interface Status {
   color: string
 }
 
-interface Goal {
+export interface Goal {
   id?: string
   uid?: string
   title: string
   description: string
 }
 
-interface GoalStep {
+export interface GoalStep {
   uid?: string
   goalID?: string
   id?: string
@@ -41,27 +41,26 @@ interface GoalStep {
   progress: number
 }
 
-interface NumberGoalStep extends GoalStep {
+export interface NumberGoalStep extends GoalStep {
   value: number
   target: number
   description: string
   type: 'number'
 }
 
-interface TaskGoalStep extends GoalStep {
+export interface TaskGoalStep extends GoalStep {
   type: 'task'
   taskID: string
 }
 
-interface BooleanGoalStep extends GoalStep {
+export interface BooleanGoalStep extends GoalStep {
   type: 'boolean'
   description: string
 }
 
-interface User {
+export interface User {
   uid: string;
   email: string;
   role: 'admin' | 'user';
+  teamIds?: string[];
 }
-
-export type { Task, Team, Status, Goal, GoalStep, NumberGoalStep, TaskGoalStep, BooleanGoalStep, User };
