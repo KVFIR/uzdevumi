@@ -63,4 +63,5 @@ export interface User {
   email: string;
   role: 'admin' | 'user';
   teamIds?: string[];
+  teams?: Team[];
 }
