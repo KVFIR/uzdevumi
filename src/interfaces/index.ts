@@ -3,7 +3,7 @@ export interface Team {
     name: string;
     color: string;
     orderIndex: number;
-    // other team-related fields
+    // other existing properties...
 }
 
 export interface Task {

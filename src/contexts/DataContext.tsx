@@ -21,6 +21,7 @@ export interface DataContextInterface {
     selectedTeam: Team | null
     setSelectedTeam: React.Dispatch<React.SetStateAction<Team | null>>
     isPending: boolean
+    updateTeams: (teams: Team[]) => void
 }
 
 export const DataContext = createContext<DataContextInterface | null>(null)
@@ -32,22 +33,29 @@ export const DataContextProvider = ({ children, uid }: DataContextProviderProps)
     const goals = useCollectionSub('goals', uid) as collectionData<Goal>
     const goalSteps = useCollectionSub('goalSteps', uid) as collectionData<(NumberGoalStep | BooleanGoalStep | TaskGoalStep)>
     const [selectedTeam, setSelectedTeam] = useState<Team | null>(null)
-
-    const isAnyDataPending = teams.isPending && tasks.isPending && statuses.isPending && goals.isPending && goalSteps.isPending
+    const [teamsData, setTeamsData] = useState<Team[] | null>(null)
 
     useEffect(() => {
         teams.data && setSelectedTeam(teams.data[0])
+        teams.data && setTeamsData(teams.data)
     }, [teams.data])
+
+    const updateTeams = (newTeams: Team[]) => {
+        setTeamsData(newTeams)
+    }
+
+    const isAnyDataPending = teams.isPending && tasks.isPending && statuses.isPending && goals.isPending && goalSteps.isPending
 
     const data = {
         tasks: tasks.data,
-        teams: teams.data,
+        teams: teamsData,
         statuses: statuses.data && statuses.data.sort((a, b) => a.orderIndex - b.orderIndex),
         selectedTeam,
         setSelectedTeam,
         goals: goals.data,
         goalSteps: goalSteps.data,
         isPending: isAnyDataPending,
+        updateTeams,
     }
 
     return (

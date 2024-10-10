@@ -14,6 +14,7 @@ interface Team {
   name: string;
   color: string;
   uid: string;
+  orderIndex: number;
 }
 
 interface Status {
