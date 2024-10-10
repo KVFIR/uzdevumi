@@ -56,8 +56,18 @@ export const AddTeamForm = ({ handleShowAddTeamForm }: AddTeamFormProps) => {
                     Team name:
                     <input required type='text' value={name} onChange={(e) => { setName(e.target.value) }} maxLength={25} />
                 </label>
+                <label>
+                    Choose color:
+                    <input
+                        className={styles.colorPicker}
+                        type='color'
+                        value={selectedColor}
+                        onChange={(e) => { setSelectedColor(e.target.value) }}
+                    />
+                </label>
                 <button type='submit'>Submit</button>
             </form>
+            {error && <p className={styles.error}>{error}</p>}
         </div>
     );
 }

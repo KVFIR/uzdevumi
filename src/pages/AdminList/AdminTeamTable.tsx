@@ -25,9 +25,12 @@ export const AdminTeamTable = ({ team }: AdminTeamTableProps) => {
 
     return (
         <table className={styles.listContainer} ref={ref} {...teamOnDropAttributes}>
-            <caption>
+            <caption onClick={() => setShowTable(!showTable)}>
                 <TeamHideBtn showTeam={showTable} setShowTeam={setShowTable} />
-                <span className={styles.teamText}>
+                <span 
+                    className={styles.teamText} 
+                    style={{ backgroundColor: team.color, cursor: 'pointer' }}
+                >
                     {team.name.toUpperCase()}
                 </span>
                 <AnimatedPopover

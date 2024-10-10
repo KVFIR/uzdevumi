@@ -1,7 +1,5 @@
 import { FormEvent, useState } from "react";
-//styles
 import styles from './AddStatusForm.module.scss'
-//hooks
 import { usePopoverContext } from "../../AnimatedPopover/AnimatedPopover";
 import { useDataContext } from "../../../hooks/useDataContext";
 import { useDb } from "../../../hooks/useDb";

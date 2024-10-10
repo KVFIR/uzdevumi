@@ -30,11 +30,12 @@ export const TaskTable = ({ status }: TaskTableProps) => {
 
     return (
         <table className={styles.listContainer} ref={ref} {...statusOnDropAttributes}>
-            <caption>
+            <caption onClick={() => setShowTable(!showTable)}>
                 <StatusHideBtn showStatus={showTable} setShowStatus={setShowTable} />
                 <span
                     className={styles.statusText}
-                    style={{ backgroundColor: status.color }}>
+                    style={{ backgroundColor: status.color, cursor: 'pointer' }}
+                >
                     {status.name.toUpperCase()}
                 </span>
                 <AnimatedPopover
