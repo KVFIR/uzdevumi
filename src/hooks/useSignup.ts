@@ -28,6 +28,7 @@ export const useSignup = () => {
         uid: userCredential.user.uid,
         email: userCredential.user.email!,
         role: 'user',
+        teamIds: [],
       }
       await setDoc(doc(db, 'users', newUser.uid), newUser)
       await addDefaultContent(newUser.uid)
