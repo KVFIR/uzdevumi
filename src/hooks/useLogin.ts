@@ -16,16 +16,13 @@ export const useLogin = () => {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // Получаем дополнительные данные пользователя из Firestore
       const userDoc = await getDoc(doc(db, 'users', user.uid));
       const userData = userDoc.data() as User;
 
-      // Загружаем информацию о командах пользователя
       if (userData.teamIds && userData.teamIds.length > 0) {
         const teamPromises = userData.teamIds.map(teamId => getDoc(doc(db, 'teams', teamId)));
         const teamDocs = await Promise.all(teamPromises);
-        const teams = teamDocs.map(doc => ({ id: doc.id, ...doc.data() } as Team));
-        userData.teams = teams;
+        userData.teams = teamDocs.map(doc => ({ id: doc.id, ...doc.data() } as Team));
       }
 
       setIsLoading(false);
