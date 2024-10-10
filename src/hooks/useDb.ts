@@ -1,8 +1,9 @@
 import { useContext } from 'react'
 import { useErrorPromptContext } from './useErrorPromptContext'
-import { addDoc, collection, deleteDoc, doc, updateDoc } from 'firebase/firestore'
+import { addDoc, collection, deleteDoc, doc, updateDoc, getDocs, query, where, arrayUnion } from 'firebase/firestore'
 import { db } from '../firebase/config'
 import { UserContext } from '../contexts/UserContext'
+import { User, Team } from '../interfaces'
 
 export const useDb = (col: string) => {
   const userContext = useContext(UserContext)
@@ -48,5 +49,42 @@ export const useDb = (col: string) => {
     }
   }
 
-  return { addDocument, removeDocument, updateDocument }
+  const getUsers = async (): Promise<User[]> => {
+    if (user?.role !== 'admin') {
+      throw new Error('Only admins can get all users')
+    }
+    try {
+      const usersSnapshot = await getDocs(collection(db, 'users'))
+      return usersSnapshot.docs.map(doc => ({ ...doc.data(), uid: doc.id } as User))
+    } catch (error) {
+      setIsError(true)
+      throw error
+    }
+  }
+
+  const getTeams = async (): Promise<Team[]> => {
+    try {
+      const teamsSnapshot = await getDocs(collection(db, 'teams'))
+      return teamsSnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id } as Team))
+    } catch (error) {
+      setIsError(true)
+      throw error
+    }
+  }
+
+  const assignTeamToUser = async (userId: string, teamId: string) => {
+    if (user?.role !== 'admin') {
+      throw new Error('Only admins can assign teams to users')
+    }
+    try {
+      await updateDoc(doc(db, 'users', userId), {
+        teamIds: arrayUnion(teamId)
+      })
+    } catch (error) {
+      setIsError(true)
+      throw error
+    }
+  }
+
+  return { addDocument, removeDocument, updateDocument, getUsers, getTeams, assignTeamToUser }
 }
