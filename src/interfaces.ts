@@ -62,6 +62,7 @@ interface User {
   uid: string;
   email: string;
   role: 'admin' | 'user';
+  teamIds: string[];
 }
 
 export type { Task, Team, Status, Goal, GoalStep, NumberGoalStep, TaskGoalStep, BooleanGoalStep, User };
