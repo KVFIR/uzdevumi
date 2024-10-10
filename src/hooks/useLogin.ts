@@ -1,44 +1,41 @@
-import { UserContext } from '../contexts/UserContext'
-import { useErrorPromptContext } from './useErrorPromptContext'
-import { useState, useContext } from 'react'
-import { getErrorMessage } from '../utils/getErrorMessage'
-import { auth, db } from '../firebase/config'
-import { signInWithEmailAndPassword } from 'firebase/auth'
-import { doc, getDoc } from 'firebase/firestore'
-import { User } from '../interfaces'
+import { useState } from 'react';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
+import { auth, db } from '../firebase/config';
+import { User, Team } from '../interfaces';
 
 export const useLogin = () => {
-  const userContext = useContext(UserContext)
-  const [errorMessage, setErrorMessage] = useState<null | string>(null)
-  const { setIsError } = useErrorPromptContext()
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  if (!userContext) {
-    throw new Error("useLogin must be used within a UserContextProvider")
-  }
+  const login = async (email: string, password: string): Promise<User | null> => {
+    setError(null);
+    setIsLoading(true);
 
-  const { dispatch } = userContext
-
-  const login = async (email: string, password: string) => {
-    setErrorMessage(null)
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password)
-      const { uid } = userCredential.user
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
 
-      const userDocRef = doc(db, 'users', uid)
-      const userDoc = await getDoc(userDocRef)
+      // Получаем дополнительные данные пользователя из Firestore
+      const userDoc = await getDoc(doc(db, 'users', user.uid));
+      const userData = userDoc.data() as User;
 
-      if (userDoc.exists()) {
-        const userData = userDoc.data() as User
-        dispatch({ type: 'LOGIN', payload: userData })
-      } else {
-        throw new Error('User document does not exist')
+      // Загружаем информацию о командах пользователя
+      if (userData.teamIds && userData.teamIds.length > 0) {
+        const teamPromises = userData.teamIds.map(teamId => getDoc(doc(db, 'teams', teamId)));
+        const teamDocs = await Promise.all(teamPromises);
+        const teams = teamDocs.map(doc => ({ id: doc.id, ...doc.data() } as Team));
+        userData.teams = teams;
       }
-    } catch (err: any) {
-      const message = getErrorMessage(err.code)
-      setErrorMessage(message || 'An unexpected error occurred')
-      !message && setIsError(true)
-    }
-  }
 
-  return { errorMessage, login }
-}
+      setIsLoading(false);
+      return userData;
+    } catch (err) {
+      setError('Failed to login');
+      setIsLoading(false);
+      return null;
+    }
+  };
+
+  return { login, error, isLoading };
+};
