@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { useErrorPromptContext } from './useErrorPromptContext'
-import { addDoc, collection, deleteDoc, doc, updateDoc, getDocs, query, where, arrayUnion } from 'firebase/firestore'
+import { addDoc, collection, deleteDoc, doc, updateDoc, getDocs, query, where, arrayUnion, arrayRemove } from 'firebase/firestore'
 import { db } from '../firebase/config'
 import { UserContext } from '../contexts/UserContext'
 import { User, Team } from '../interfaces'
@@ -86,5 +86,33 @@ export const useDb = (col: string) => {
     }
   }
 
-  return { addDocument, removeDocument, updateDocument, getUsers, getTeams, assignTeamToUser }
+  const updateUserRole = async (userId: string, newRole: 'admin' | 'user') => {
+    if (user?.role !== 'admin') {
+      throw new Error('Only admins can update user roles');
+    }
+    try {
+      await updateDoc(doc(db, 'users', userId), {
+        role: newRole
+      });
+    } catch (error) {
+      setIsError(true);
+      throw error;
+    }
+  };
+
+  const removeTeamFromUser = async (userId: string, teamId: string) => {
+    if (user?.role !== 'admin') {
+      throw new Error('Only admins can remove teams from users')
+    }
+    try {
+      await updateDoc(doc(db, 'users', userId), {
+        teamIds: arrayRemove(teamId)
+      })
+    } catch (error) {
+      setIsError(true)
+      throw error
+    }
+  }
+
+  return { addDocument, removeDocument, updateDocument, getUsers, getTeams, assignTeamToUser, updateUserRole, removeTeamFromUser }
 }

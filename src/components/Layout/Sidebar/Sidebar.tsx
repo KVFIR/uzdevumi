@@ -77,10 +77,16 @@ export const Sidebar = () => {
                             <span>{t('navigation.calendar')}</span>
                         </Link>
                         {user?.role === 'admin' && (
-                            <Link to="/Admin" className={styles.navLink}>
-                                <img src={adminIcon} alt="Admin Tasks" />
-                                <span>Admin</span>
-                            </Link>
+                            <>
+                                <Link to="/Admin" className={styles.navLink}>
+                                    <img src={adminIcon} alt="Admin Tasks" />
+                                    <span>Team Tasks</span>
+                                </Link>
+                                <Link to="/AdminUsers" className={styles.navLink}>
+                                    <img src={adminIcon} alt="Manage Users" />
+                                    <span>Manage Users</span>
+                                </Link>
+                            </>
                         )}
                     </nav>
                 </div>

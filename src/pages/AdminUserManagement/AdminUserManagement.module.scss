@@ -1,0 +1,65 @@
+@use '../../scss/placeholders';
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
+.adminUserManagement {
+  margin-bottom: 1rem;
+}
+
+h2 {
+  @extend %sectionHeader !optional;
+}
+
+.userList {
+  @extend %baseTable;
+  margin-bottom: 0.5rem;
+  padding-left: 1.25rem;
+}
+
+.userItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  border-bottom: 1px solid $bright-4;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.userEmail {
+  font-weight: bold;
+}
+
+.userRole {
+  font-size: 0.9em;
+  color: $dark-1;
+}
+
+.teamAssignmentButton {
+  @extend %baseButton;
+  @extend %darkeningBorder;
+}
+
+.teamCheckboxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.teamCheckbox {
+  display: flex;
+  align-items: center;
+  
+  input {
+    margin-right: 0.5rem;
+  }
+
+  span {
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.25rem;
+    color: white;
+  }
+}

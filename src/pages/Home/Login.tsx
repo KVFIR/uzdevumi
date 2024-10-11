@@ -14,7 +14,7 @@ export const Login = ({ handleClosingForms }: LoginProps) => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const { login, errorMessage } = useLogin()
+    const { login, error, isLoading } = useLogin()
 
 
     const handleSubmit = (e: FormEvent) => {
@@ -53,7 +53,7 @@ export const Login = ({ handleClosingForms }: LoginProps) => {
                     </button>
                 </div>
             </form>
-            {errorMessage && <p>{errorMessage}</p>}
+            {error && <p>{error}</p>}
         </>
     );
 }

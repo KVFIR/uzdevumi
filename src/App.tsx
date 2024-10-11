@@ -1,7 +1,8 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from './contexts/UserContext';
-import { DataContextProvider } from './contexts/DataContext'
+import { DataContextProvider } from './contexts/DataContext';
+import { AdminUserManagement } from './pages/AdminUserManagement/AdminUserManagement';
 
 import { ErrorPrompt } from './components/Modals/ErrorPrompt/ErrorPrompt';
 //pages
@@ -56,6 +57,7 @@ export function App() {
                   <Route index element={<Goals />}></Route>
                 </Route>
                 <Route path="Admin" element={<AdminList />} />
+                <Route path="AdminUsers" element={<AdminUserManagement />} />
                 <Route path="*" element={<Navigate to='/Dashboard' replace />} />
               </Routes>
             </DataContextProvider>
