@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.2] - 2024-10-11
+
+### Added
+- Implemented user role management in AdminUserManagement component
+- Added functionality to assign and remove teams from users in AdminUserManagement
+
+### Changed
+- Modified useDataContext hook to return all teams and user information
+- Updated TeamsSection component to filter teams based on user role and teamIds
+- Improved display of teams and admin-specific features in TeamsSection
+- Refactored AdminUserManagement component for better team assignment handling
+
+### Known Issues
+- The issue with empty team list in Dashboard for regular users remains unresolved and requires further investigation
+
 ## [1.2.1] - 2024-10-10
 
 ### Changed
