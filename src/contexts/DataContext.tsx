@@ -1,6 +1,8 @@
 import React, { createContext, Dispatch, useEffect, useState, useReducer } from "react";
 import { useCollectionSub } from '../hooks/useCollectionSub';
 import { Task, Team, Status, Goal, NumberGoalStep, BooleanGoalStep, TaskGoalStep } from '../interfaces'
+import { useContext } from 'react';
+import { UserContext } from './UserContext';
 
 interface DataContextProviderProps {
     children: React.ReactNode
@@ -48,6 +50,7 @@ const dataReducer = (state: any, action: DataAction) => {
 };
 
 export const DataContextProvider = ({ children, uid }: DataContextProviderProps) => {
+    const userContext = useContext(UserContext);
     const teams = useCollectionSub('teams', uid) as collectionData<Team>
     const tasks = useCollectionSub('tasks', uid) as collectionData<Task>
     const statuses = useCollectionSub('statuses', uid) as collectionData<Status>
@@ -59,13 +62,19 @@ export const DataContextProvider = ({ children, uid }: DataContextProviderProps)
     const [state, dispatch] = useReducer(dataReducer, initialState);
 
     useEffect(() => {
-        teams.data && setSelectedTeam(teams.data[0])
-        teams.data && setTeamsData(teams.data)
-    }, [teams.data])
+        if (teams.data && userContext?.user?.teamIds) {
+            const userTeams = teams.data.filter(team => team.id && userContext.user?.teamIds?.includes(team.id));
+            setTeamsData(userTeams);
+            setSelectedTeam(userTeams[0] || null);
+        }
+    }, [teams.data, userContext?.user])
 
     const updateTeams = (newTeams: Team[]) => {
-        setTeamsData(newTeams)
-        dispatch({ type: 'SET_TEAMS', payload: newTeams })
+        if (userContext?.user?.teamIds) {
+            const userTeams = newTeams.filter(team => team.id && userContext.user?.teamIds?.includes(team.id));
+            setTeamsData(userTeams);
+            dispatch({ type: 'SET_TEAMS', payload: userTeams });
+        }
     }
 
     const isAnyDataPending = teams.isPending && tasks.isPending && statuses.isPending && goals.isPending && goalSteps.isPending

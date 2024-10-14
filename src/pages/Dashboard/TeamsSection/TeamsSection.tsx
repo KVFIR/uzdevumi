@@ -7,7 +7,7 @@ import styles from './TeamsSection.module.scss'
 import { AddTeamForm } from "../../../components/forms/AddTeamForm/AddTeamForm";
 import { TeamDeleteModal } from "../../../components/ui/TeamDeleteModal/TeamDeleteModal";
 
-export const TeamsSection = ({ ...props }: ComponentPropsWithoutRef<'section'>) => {
+export const TeamsSection = (props: ComponentPropsWithoutRef<'section'>) => {
     const { t } = useTranslation();
     const { teams, statuses, tasks } = useDataContext()
     const [showAddTeam, setShowAddTeam] = useState(false)
@@ -22,16 +22,20 @@ export const TeamsSection = ({ ...props }: ComponentPropsWithoutRef<'section'>) 
                 <ul>
                     {!teams || teams.length === 0 ?
                         <div className={styles.noTasks}>{t('dashboard.noWorkteams')}</div>
-                        : teams.map(team =>
+                        : teams.map(team => (
                             <li key={team.id}>
                                 {team.name}
                                 <br />
                                 <span className={styles.itemDescription}>
-                                    {t('teams.statusesAndTasks', { statusCount: statuses?.filter(t => t.teamId === team.id!).length, taskCount: tasks?.filter(t => t.teamId === team.id!).length })}
+                                    {t('teams.statusesAndTasks', { 
+                                        statusCount: statuses?.filter(s => s.teamId === team.id).length || 0, 
+                                        taskCount: tasks?.filter(t => t.teamId === team.id).length || 0 
+                                    })}
                                 </span>
                                 <TeamDeleteModal team={team} className={styles.teamDeleteBtn} />
                             </li>
-                        )}
+                        ))
+                    }
                 </ul>
                 {showAddTeam ?
                     <AddTeamForm handleShowAddTeamForm={handleShowAddTeam} />
